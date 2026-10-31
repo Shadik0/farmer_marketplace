@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriMarket — Hackathon Presentation (HACK-P309)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
+    .slide { display: none; min-height: 580px; }
+    .slide.active { display: flex; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between p-4 sm:p-8 select-none">
+
+  <!-- Top Presentation Header -->
+  <header class="max-w-5xl mx-auto w-full flex items-center justify-between pb-4 border-b border-slate-800">
+    <div class="flex items-center space-x-3">
+      <span class="text-2xl">🌾</span>
+      <div>
+        <h1 class="text-base font-bold font-display tracking-tight text-white">AgriMarket Presentation</h1>
+        <p class="text-xs text-emerald-400 font-mono">HACK-P309 • Backend Web Development Hackathon</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2 text-xs">
+      <span class="text-slate-400">Slide <span id="slideNum" class="font-bold text-white">1</span> of 12</span>
+      <a href="/" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded-lg ml-2">Open Live App ➔</a>
+    </div>
+  </header>
+
+  <!-- Slide Canvas -->
+  <main class="max-w-5xl mx-auto w-full my-auto py-6">
+    
+    <!-- SLIDE 1: TITLE & TEAM -->
+    <div class="slide active flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-6">
+      <div class="inline-flex items-center space-x-2 bg-emerald-500/20 text-emerald-300 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider w-fit">
+        Backend Web Development Hackathon
+      </div>
+      <h2 class="text-4xl sm:text-5xl font-black font-display text-white tracking-tight leading-tight">
+        AgriMarket — Direct Farm-to-Buyer Marketplace
+      </h2>
+      <p class="text-emerald-300 font-mono text-sm">Problem Statement ID: HACK-P309 (Category: Agriculture, Intermediate)</p>
+      
+      <div class="pt-4 border-t border-slate-700 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+          <div class="text-emerald-400 font-bold uppercase text-[10px]">Team Lead</div>
+          <div class="font-bold text-white text-sm mt-0.5">[Student Name 1]</div>
+          <div class="text-slate-400 text-[11px]">Roll: [Roll 1] • CSE - Sec A</div>
+        </div>
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+          <div class="text-slate-400 font-bold uppercase text-[10px]">Team Member 2</div>
+          <div class="font-bold text-white text-sm mt-0.5">[Student Name 2]</div>
+          <div class="text-slate-400 text-[11px]">Roll: [Roll 2] • CSE - Sec A</div>
+        </div>
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+          <div class="text-slate-400 font-bold uppercase text-[10px]">Team Member 3</div>
+          <div class="font-bold text-white text-sm mt-0.5">[Student Name 3]</div>
+          <div class="text-slate-400 text-[11px]">Roll: [Roll 3] • CSE - Sec A</div>
+        </div>
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+          <div class="text-slate-400 font-bold uppercase text-[10px]">Team Member 4</div>
+          <div class="font-bold text-white text-sm mt-0.5">[Student Name 4]</div>
+          <div class="text-slate-400 text-[11px]">Roll: [Roll 4] • CSE - Sec A</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: PROBLEM STATEMENT -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">02 / Problem Statement</span>
+      <h2 class="text-3xl font-bold font-display text-white">The Middleman Crisis in Produce Supply</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-300">
+        <div class="space-y-3 bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+          <h3 class="font-bold text-white text-base">Key Real-World Challenges</h3>
+          <ul class="space-y-2 list-disc list-inside text-xs leading-relaxed text-slate-300">
+            <li><strong>Intermediary Gouging:</strong> 3 to 5 middlemen take up to 45% of consumer spend.</li>
+            <li><strong>Zero Availability Transparency:</strong> Farmers struggle to announce real-time harvest quantities and unit prices.</li>
+            <li><strong>Inventory Mismanagement:</strong> Risk of overselling leading to cancelled orders and wasted logistics.</li>
+            <li><strong>Lack of Consumer Trust:</strong> Buyers have no visibility into harvest dates or authentic farm provenance.</li>
+          </ul>
+        </div>
+        <div class="space-y-3 bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+          <h3 class="font-bold text-white text-base">Target User Groups</h3>
+          <ul class="space-y-2 text-xs text-slate-300">
+            <li>👨‍🌾 <strong>Smallholder Farmers:</strong> Looking to publish available crops and receive direct payments without commission loss.</li>
+            <li>👩‍🍳 <strong>Households & Chefs:</strong> Demanding fresh, verified harvest produce delivered or picked up directly.</li>
+            <li>🏢 <strong>Wholesalers & Grocers:</strong> Requiring bulk tier discounts and transparent farm contracts.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: OBJECTIVES & SOLUTION -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">03 / Objectives & Solution</span>
+      <h2 class="text-3xl font-bold font-display text-white">Proposed Architecture & Core Solution</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="p-5 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-2xl">🌱</div>
+          <h3 class="font-bold text-white text-sm">Direct Exchange Platform</h3>
+          <p class="text-slate-400 leading-relaxed">Direct connection between verified growers and multi-segment buyers, cutting out unnecessary aggregator layers.</p>
+        </div>
+        <div class="p-5 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-2xl">⚡</div>
+          <h3 class="font-bold text-white text-sm">Strict Stock Atomicity</h3>
+          <p class="text-slate-400 leading-relaxed">Guaranteed inventory validation: orders cannot exceed stock. Automatic stock refund when orders are cancelled.</p>
+        </div>
+        <div class="p-5 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-2xl">🔄</div>
+          <h3 class="font-bold text-white text-sm">5-Stage Order Lifecycle</h3>
+          <p class="text-slate-400 leading-relaxed">Complete transparent workflow: Requested ➔ Accepted ➔ Ready for Pickup ➔ Completed with simulated payments.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: FEATURES IMPLEMENTED -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">04 / Implemented Features</span>
+      <h2 class="text-3xl font-bold font-display text-white">Working Functional Modules</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-emerald-400">Produce Listings</div>
+          <p class="text-slate-400 text-[11px] mt-1">17 items with photos, harvest dates, units, MOQ & prices.</p>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-emerald-400">Search & Filters</div>
+          <p class="text-slate-400 text-[11px] mt-1">Real-time keyword search, categories, price range, regions.</p>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-emerald-400">Cart & Checkout</div>
+          <p class="text-slate-400 text-[11px] mt-1">Atomic inventory checks, bulk tier pricing, simulated pay.</p>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-emerald-400">Order Lifecycle</div>
+          <p class="text-slate-400 text-[11px] mt-1">5-stage state tracker with stock restoration on cancel.</p>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-emerald-400">Farmer Hub</div>
+          <p class="text-slate-400 text-[11px] mt-1">Live metrics, inventory table, order acceptance stream.</p>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-emerald-400">Buyer Dashboard</div>
+          <p class="text-slate-400 text-[11px] mt-1">Active order tracker stepper, receipts, farm contact.</p>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-emerald-400">Admin Moderation</div>
+          <p class="text-slate-400 text-[11px] mt-1">Duplicate detection, flagged queue, approve/reject.</p>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-emerald-400">Provenance & QR</div>
+          <p class="text-slate-400 text-[11px] mt-1">Batch UUID, harvest date, GPS origin, and scannable QR.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: TECH STACK -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">05 / Technology Stack</span>
+      <h2 class="text-3xl font-bold font-display text-white">Full-Stack Architecture Choices</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="p-5 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-emerald-400 text-sm">Backend Engine</h3>
+          <p class="text-slate-300"><strong>FastAPI (Python 3.12)</strong> + <strong>Uvicorn ASGI</strong></p>
+          <ul class="text-slate-400 list-disc list-inside space-y-1">
+            <li>High throughput async event loop</li>
+            <li>Automatic OpenAPI / Swagger generation</li>
+            <li>Pydantic v2 data validation</li>
+          </ul>
+        </div>
+        <div class="p-5 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-blue-400 text-sm">Database Layer</h3>
+          <p class="text-slate-300"><strong>SQLite3 with ACID Transactions</strong></p>
+          <ul class="text-slate-400 list-disc list-inside space-y-1">
+            <li>Foreign keys enabled with cascade</li>
+            <li>Row-level dictionary mappings</li>
+            <li>Atomic rollback on stock conflict</li>
+          </ul>
+        </div>
+        <div class="p-5 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-amber-400 text-sm">Frontend Presentation</h3>
+          <p class="text-slate-300"><strong>Responsive SPA + Tailwind CSS</strong></p>
+          <ul class="text-slate-400 list-disc list-inside space-y-1">
+            <li>Reactive JavaScript controller</li>
+            <li>Multilingual support (EN / HI / ES)</li>
+            <li>Instant 1-click role switcher</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: SYSTEM ARCHITECTURE -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">06 / System Architecture</span>
+      <h2 class="text-3xl font-bold font-display text-white">Component Data Flow</h2>
+      <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 font-mono text-xs text-emerald-300 overflow-x-auto space-y-1">
+        <div>[ Client Browser / Mobile ] ➔ (HTTP GET/POST/PUT/PATCH)</div>
+        <div class="pl-4">│</div>
+        <div class="pl-4">▼</div>
+        <div>[ FastAPI ASGI Router & Static Mount ]</div>
+        <div class="pl-4">├── Input Validation & Schemas (models.py)</div>
+        <div class="pl-4">├── Business Logic & State Machine (app.py)</div>
+        <div class="pl-4">└── Automated Duplicate Produce Detector</div>
+        <div class="pl-4">│</div>
+        <div class="pl-4">▼ (ACID Transactional SQLite Bridge)</div>
+        <div>[ Persistent Database (marketplace.db) ]</div>
+        <div class="pl-4">├── users (5 Farmers, 3 Buyers, 1 Admin)</div>
+        <div class="pl-4">├── products (17 listings with batch codes)</div>
+        <div class="pl-4">├── orders & order_items</div>
+        <div class="pl-4">└── moderation_logs</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: BACKEND IMPLEMENTATION -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">07 / Backend Implementation</span>
+      <h2 class="text-3xl font-bold font-display text-white">Business Rules & Transaction Integrity</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-emerald-400">1. Atomic Stock Deduction</h3>
+          <p class="text-slate-300 leading-relaxed">
+            When an order is requested, the backend validates available stock in a single transaction. If requested quantity exceeds stock, an <code class="text-rose-400">HTTP 400</code> error is raised with a clear message.
+          </p>
+        </div>
+        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-emerald-400">2. Stock Restoration on Cancel</h3>
+          <p class="text-slate-300 leading-relaxed">
+            When an order transitions to <code class="text-amber-400">cancelled</code>, an automatic query credits all line item quantities back to the product's available stock pool immediately.
+          </p>
+        </div>
+        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-emerald-400">3. Duplicate Produce Detection</h3>
+          <p class="text-slate-300 leading-relaxed">
+            The listing engine detects if a farmer creates multiple listings with identical titles, automatically setting <code class="text-purple-400">is_duplicate = 1</code> and routing them to Admin moderation.
+          </p>
+        </div>
+        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-emerald-400">4. Prototype Safety Considerations</h3>
+          <p class="text-slate-300 leading-relaxed">
+            Simulated payment modes (Cash on Pickup, COD, Demo UPI). Real banking credentials and cards are strictly never collected.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: DATABASE DESIGN -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">08 / Database Design</span>
+      <h2 class="text-3xl font-bold font-display text-white">Relational Schema & Constraints</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-white">users</div>
+          <div class="text-[10px] text-slate-400 mt-1 font-mono">
+            id (PK)<br>name, email (UQ)<br>role (farmer/buyer/admin)<br>location, farm_name<br>rating (REAL)
+          </div>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-white">products</div>
+          <div class="text-[10px] text-slate-400 mt-1 font-mono">
+            id (PK)<br>farmer_id (FK)<br>name, category, unit<br>price, available_qty<br>harvest_date, batch_num<br>status (active/flagged)
+          </div>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-white">orders</div>
+          <div class="text-[10px] text-slate-400 mt-1 font-mono">
+            id (PK)<br>buyer_id, farmer_id (FK)<br>total_amount (REAL)<br>status (5 states)<br>payment_method, notes
+          </div>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <div class="font-bold text-white">order_items</div>
+          <div class="text-[10px] text-slate-400 mt-1 font-mono">
+            id (PK)<br>order_id (FK CASCADE)<br>product_id (FK)<br>quantity, unit<br>unit_price, total_price
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: SCREENSHOTS & WORKFLOW -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">09 / Live Application Workflows</span>
+      <h2 class="text-3xl font-bold font-display text-white">End-to-End User Experience</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <div class="font-bold text-emerald-400 text-sm">1. Buyer Discovery</div>
+          <p class="text-slate-300">Search organic produce, view harvest dates, check mandi savings, and place orders with atomic inventory reservation.</p>
+        </div>
+        <div class="p-4 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <div class="font-bold text-emerald-400 text-sm">2. Farmer Fulfillment</div>
+          <p class="text-slate-300">View incoming orders, accept requests, mark ready for pickup, manage live stock, and edit prices on the fly.</p>
+        </div>
+        <div class="p-4 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <div class="font-bold text-emerald-400 text-sm">3. Admin Moderation</div>
+          <p class="text-slate-300">Inspect duplicate listing flags, moderate improper listings, and monitor gross merchandise value in real-time.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: TESTING EVIDENCE -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">10 / Testing & Verification</span>
+      <h2 class="text-3xl font-bold font-display text-white">Automated Test Results (100% Pass)</h2>
+      <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 font-mono text-xs text-emerald-400 space-y-1">
+        <div>Ran 9 tests in 1.251s ...... OK</div>
+        <div class="text-slate-400">---------------------------------------------------</div>
+        <div>✓ test_stock_limit_enforcement ...................... PASS</div>
+        <div>✓ test_order_placement_deducts_inventory ............ PASS</div>
+        <div>✓ test_order_cancellation_restores_inventory ......... PASS</div>
+        <div>✓ test_order_lifecycle_flow (4-stage progression) .... PASS</div>
+        <div>✓ test_illegal_order_transition_rejected ............. PASS</div>
+        <div>✓ test_duplicate_product_detection_and_moderation ... PASS</div>
+        <div>✓ test_bulk_discount_calculation ..................... PASS</div>
+        <div>✓ test_minimum_order_quantity_enforcement ........... PASS</div>
+        <div>✓ test_seeded_users_and_products .................... PASS</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: DEPLOYMENT & CHALLENGES -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">11 / Deployment & Challenges</span>
+      <h2 class="text-3xl font-bold font-display text-white">Deployment Architecture & Solutions</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-white text-sm">Deployment Setup</h3>
+          <p class="text-slate-400">Deployed as a container-ready FastAPI application with ASGI static asset hosting.</p>
+          <ul class="text-slate-400 list-disc list-inside space-y-1">
+            <li>Secure environment configuration via <code class="text-emerald-300">.env</code></li>
+            <li>Zero frontend build hurdles: CDN Tailwind + vanilla ES6</li>
+            <li>Full Swagger API docs at <code class="text-emerald-300">/docs</code></li>
+          </ul>
+        </div>
+        <div class="p-4 bg-slate-900/60 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-white text-sm">Key Engineering Solutions</h3>
+          <p class="text-slate-400"><strong>Race conditions:</strong> Prevented through SQLite ACID transactions.</p>
+          <p class="text-slate-400"><strong>Data isolation:</strong> Seamless multi-role switcher for instant evaluator testing without logins.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: CONCLUSION -->
+    <div class="slide flex-col justify-center bg-slate-800/80 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl space-y-5 text-center">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">12 / Conclusion & Future Scope</span>
+      <h2 class="text-4xl font-extrabold font-display text-white">Thank You!</h2>
+      <p class="text-sm text-slate-300 max-w-xl mx-auto">
+        AgriMarket demonstrates a working, tested, and verifiable direct farm exchange designed to restore economic dignity to producers.
+      </p>
+      <div class="pt-4 flex justify-center space-x-4">
+        <a href="/" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-lg transition">
+          Launch Live App Demonstration 🚀
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Presentation Navigation Footer -->
+  <footer class="max-w-5xl mx-auto w-full flex items-center justify-between pt-4 border-t border-slate-800 text-xs">
+    <div class="flex items-center space-x-2 text-slate-400">
+      <span>Use <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700">←</kbd> and <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700">→</kbd> arrow keys to navigate slides.</span>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="prevSlide()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-white font-bold">
+        Previous
+      </button>
+      <button onclick="nextSlide()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-xl text-white font-bold">
+        Next Slide ➔
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      document.getElementById('slideNum').innerText = index + 1;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
+      else if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</body>
+</html>

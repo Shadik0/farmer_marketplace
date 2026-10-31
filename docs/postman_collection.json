@@ -1,0 +1,239 @@
+{
+  "info": {
+    "_postman_id": "a93e8a71-8b92-4112-9c1a-82193bca9921",
+    "name": "AgriMarket Backend API (HACK-P309)",
+    "description": "Postman Collection for AgriMarket Backend Web Development Hackathon",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Users & Auth",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          }
+        },
+        {
+          "name": "Get Farmers Only",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users?role=farmer",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"],
+              "query": [{"key": "role", "value": "farmer"}]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Produce Listings",
+      "item": [
+        {
+          "name": "List All Active Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/products?status=active",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products"],
+              "query": [{"key": "status", "value": "active"}]
+            }
+          }
+        },
+        {
+          "name": "Search Produce (Category & Keyword)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/products?search=tomato&category=Vegetables",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products"],
+              "query": [
+                {"key": "search", "value": "tomato"},
+                {"key": "category", "value": "Vegetables"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create New Produce Listing (Farmer)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farmer_id\": 1,\n  \"name\": \"Fresh Organic Bell Peppers\",\n  \"category\": \"Vegetables\",\n  \"description\": \"Crisp polyhouse capsicum.\",\n  \"unit\": \"kg\",\n  \"price\": 45.0,\n  \"available_quantity\": 100.0,\n  \"min_order_quantity\": 1.0,\n  \"bulk_discount_qty\": 20.0,\n  \"bulk_discount_percent\": 10.0,\n  \"harvest_date\": \"2026-10-30\",\n  \"availability_date\": \"2026-11-10\",\n  \"pickup_delivery\": \"both\",\n  \"location\": \"Nashik, Maharashtra\",\n  \"organic_certified\": true,\n  \"pesticide_free\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/products",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Orders & Stock Workflow",
+      "item": [
+        {
+          "name": "Place Valid Order (Stock Deducted)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"buyer_id\": 6,\n  \"items\": [\n    {\"product_id\": 1, \"quantity\": 5.0}\n  ],\n  \"delivery_type\": \"delivery\",\n  \"delivery_address\": \"Flat 402, Sea Green Apts, Mumbai\",\n  \"payment_method\": \"cash_on_delivery\",\n  \"notes\": \"Morning delivery requested\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders"]
+            }
+          }
+        },
+        {
+          "name": "Place Invalid Order (Stock Limit Exceeded - 400)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"buyer_id\": 6,\n  \"items\": [\n    {\"product_id\": 1, \"quantity\": 999999.0}\n  ],\n  \"delivery_type\": \"pickup\",\n  \"payment_method\": \"cash_on_pickup\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders"]
+            }
+          }
+        },
+        {
+          "name": "Update Order Status (Accept)",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"accepted\",\n  \"cancel_reason\": \"\",\n  \"user_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders/1/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders", "1", "status"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Order (Atomic Stock Return)",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"cancelled\",\n  \"cancel_reason\": \"Buyer requested cancellation before harvest\",\n  \"user_id\": 6\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders/1/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders", "1", "status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Admin Moderation & Metrics",
+      "item": [
+        {
+          "name": "Get Platform Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/metrics",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "metrics"]
+            }
+          }
+        },
+        {
+          "name": "Get Moderation Queue (Flagged & Duplicates)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/listings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "listings"]
+            }
+          }
+        },
+        {
+          "name": "Moderate Listing (Approve / Reject)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"admin_id\": 9,\n  \"action\": \"approved\",\n  \"reason\": \"Listing verified authentic\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/listings/17/moderate",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "listings", "17", "moderate"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Analytics & Demo",
+      "item": [
+        {
+          "name": "Get Price Trends Benchmark",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/price-trends",
+              "host": ["{{base_url}}"],
+              "path": ["api", "analytics", "price-trends"]
+            }
+          }
+        },
+        {
+          "name": "Reset Seed Data",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/seed/reset",
+              "host": ["{{base_url}}"],
+              "path": ["api", "seed", "reset"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    }
+  ]
+}

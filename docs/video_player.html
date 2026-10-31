@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriMarket — Hackathon Demo Video (HACK-P309)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center justify-between p-4 sm:p-8 antialiased">
+
+  <!-- Header -->
+  <header class="max-w-5xl w-full flex flex-wrap items-center justify-between pb-4 border-b border-slate-800 gap-3">
+    <div class="flex items-center space-x-3">
+      <span class="text-3xl">🌾</span>
+      <div>
+        <h1 class="text-xl font-bold font-display text-white">AgriMarket — Official Demo Video</h1>
+        <p class="text-xs text-emerald-400 font-mono">HACK-P309 • Backend Web Development (3.5 Minutes HD)</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2 text-xs">
+      <a href="/docs-view/demo_video.mp4" download="AgriMarket_HACK-P309_Demo_Video.mp4" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl shadow-lg transition flex items-center space-x-1.5">
+        <span>⬇️</span>
+        <span>Download MP4 Video</span>
+      </a>
+      <a href="/" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3 py-2 rounded-xl transition">
+        Marketplace ➔
+      </a>
+      <a href="/presentation" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-3 py-2 rounded-xl transition">
+        12 Slides ➔
+      </a>
+    </div>
+  </header>
+
+  <!-- Video Player Section -->
+  <main class="max-w-5xl w-full my-6 space-y-6">
+    
+    <div class="bg-slate-900 rounded-3xl p-3 sm:p-4 border border-slate-800 shadow-2xl overflow-hidden">
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-inner">
+        <video id="demoVideo" controls autoplay playsinline class="w-full h-full object-contain">
+          <source src="/docs-view/demo_video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Controls & Download Bar -->
+      <div class="p-4 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-slate-800/80 mt-2">
+        <div class="flex items-center space-x-2 text-slate-400">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>HD 720p • 15 FPS • 3m 35s • 5-Part Hackathon Guide Structure</span>
+        </div>
+        <div class="flex items-center space-x-3">
+          <a href="/docs-view/demo_video.mp4" download="AgriMarket_HACK-P309_Demo_Video.mp4" class="text-emerald-400 hover:text-emerald-300 font-bold flex items-center space-x-1">
+            <span>💾 Save to Computer (.mp4)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5-Part Synchronized Transcript Accordion -->
+    <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 space-y-4 text-xs">
+      <h3 class="text-base font-bold font-display text-white flex items-center space-x-2">
+        <span>📝</span>
+        <span>Spoken Narration & Timestamp Structure (Section 9 Compliance)</span>
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-300">
+        
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center text-emerald-400 font-bold">
+            <span>Part 1: Introduction</span>
+            <span class="font-mono text-[11px]">0:00 - 0:20 (20s)</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed text-[11px]">
+            "Hello respected evaluators. We are Team AgriCoders presenting our Backend Web Development Hackathon project: AgriMarket, addressing Problem Statement HACK-P309: Farmer Marketplace."
+          </p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center text-rose-400 font-bold">
+            <span>Part 2: Problem & Proposed Solution</span>
+            <span class="font-mono text-[11px]">0:20 - 0:50 (30s)</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed text-[11px]">
+            "Across traditional supply chains, smallholder farmers lose up to 45% of harvest value to intermediaries. AgriMarket eliminates middleman gouging with direct farm listings and transparent pricing."
+          </p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center text-blue-400 font-bold">
+            <span>Part 3: Working Application Demo</span>
+            <span class="font-mono text-[11px]">0:50 - 2:00 (70s)</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed text-[11px]">
+            "Live walkthrough: Browse fresh produce, filter by region and category, check batch QR traceability, test atomic stock validation (from 0 to stock limit), and checkout with simulated payments."
+          </p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center text-purple-400 font-bold">
+            <span>Part 4: Backend & Database Testing</span>
+            <span class="font-mono text-[11px]">2:00 - 2:35 (35s)</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed text-[11px]">
+            "Powered by FastAPI and SQLite with ACID transactions and Foreign Keys. 9 out of 9 automated unit tests pass with 100% success rate, validating stock limits and cancellation refunds."
+          </p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2 md:col-span-2">
+          <div class="flex justify-between items-center text-amber-400 font-bold">
+            <span>Part 5: Live Deployment & Conclusion</span>
+            <span class="font-mono text-[11px]">2:35 - 3:35 (60s)</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed text-[11px]">
+            "Live accessible deployment via Cloudflare Tunnel and local Wi-Fi. Full 17-section documentation, Postman collection, and 12-slide presentation deck. Thank you!"
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="max-w-5xl w-full text-center py-4 text-xs text-slate-500 border-t border-slate-800">
+    AgriMarket Hackathon Prototype • Problem HACK-P309 • Internal & External Hackathon Submission
+  </footer>
+
+</body>
+</html>

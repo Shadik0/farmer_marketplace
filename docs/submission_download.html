@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriMarket — HACK-P309 Final Submission</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1,h2,h3,.font-display { font-family: 'Outfit', sans-serif; }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; }
+      .page-break { page-break-before: always; }
+    }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #e2e8f0; padding: 8px 12px; text-align: left; font-size: 13px; }
+    th { background: #f0fdf4; font-weight: 700; color: #166534; }
+    tr:nth-child(even) { background: #f8fafc; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 8px; font-size: 12px; overflow-x: auto; white-space: pre-wrap; }
+    code { font-family: 'Courier New', monospace; font-size: 12px; }
+    .section { margin-bottom: 36px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+    .pass { background: #dcfce7; color: #166534; }
+    .leader { background: #fef9c3; color: #854d0e; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-emerald-800 to-teal-700 text-white px-8 py-6 print:py-4">
+    <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-3 mb-1">
+          <span class="text-4xl">🌾</span>
+          <div>
+            <h1 class="text-2xl font-bold font-display">AgriMarket — Final Submission</h1>
+            <p class="text-emerald-200 text-sm">HACK-P309 · Farmer Marketplace · Backend Web Development</p>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-2 flex-wrap">
+          <span class="badge bg-emerald-500/30 text-emerald-100">HACK-P309</span>
+          <span class="badge bg-white/20 text-white">Agriculture</span>
+          <span class="badge bg-white/20 text-white">Intermediate</span>
+          <span class="badge bg-amber-400 text-slate-900">30 October 2026</span>
+        </div>
+      </div>
+      <div class="flex gap-2 no-print flex-wrap">
+        <button onclick="window.print()" class="bg-white text-emerald-800 font-bold px-4 py-2 rounded-xl text-sm shadow hover:bg-emerald-50 transition">🖨️ Print / Save PDF</button>
+        <a href="/docs-view/HACK_P309_Final_Submission.md" download="HACK_P309_Final_Submission.md" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-sm shadow transition">⬇️ Download .MD</a>
+        <a href="/" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-4 py-2 rounded-xl text-sm transition">← Marketplace</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 py-8 space-y-8">
+
+    <!-- 1. Team Details -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">1</span>
+        Team Details
+      </h2>
+      <table>
+        <thead><tr><th>#</th><th>Full Name</th><th>Roll Number</th><th>Branch</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Gayam Venkata Srinivasulu</strong> <span class="badge leader">⭐ Leader</span></td>
+            <td><code>25MVCSCR0013</code></td>
+            <td>CSE (CS)</td>
+            <td><strong>Team Leader</strong></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>SHADIK ALI</td>
+            <td><code>25MVCAIR0102</code></td>
+            <td>CSE (AI)</td>
+            <td>Team Member</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>PITLA PAVAN FANINDRA</td>
+            <td><code>25MVCSCR0044</code></td>
+            <td>CSE (CS)</td>
+            <td>Team Member</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>B PARDASARATHI REDDY</td>
+            <td><code>25MVCSCR0004</code></td>
+            <td>CSE (CS)</td>
+            <td>Team Member</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-xs text-slate-500 mt-3">📞 Team Contact: <strong>+91 80748 68505</strong></p>
+    </div>
+
+    <!-- 2. Problem Statement -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">2</span>
+        Problem Statement
+      </h2>
+      <table>
+        <tbody>
+          <tr><th>Problem ID</th><td><code>HACK-P309</code></td></tr>
+          <tr><th>Title</th><td>Farmer Marketplace</td></tr>
+          <tr><th>Category</th><td>Agriculture</td></tr>
+          <tr><th>Difficulty</th><td>Intermediate</td></tr>
+          <tr><th>Type</th><td>Student Hackathon Prototype</td></tr>
+        </tbody>
+      </table>
+      <p class="text-sm text-slate-600 mt-3 leading-relaxed">Create an online marketplace where farmers can list produce and buyers (households, retailers, restaurants, wholesalers) can browse available products and place orders directly — eliminating middlemen and providing transparent farm-gate pricing with verified harvest traceability.</p>
+    </div>
+
+    <!-- 3. GitHub Repository -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">3</span>
+        GitHub Repository
+      </h2>
+      <table class="mb-4">
+        <tbody>
+          <tr><th>Repository Name</th><td><code>agrimarket-hack-p309</code></td></tr>
+          <tr><th>Source Code</th><td><code>farmer_marketplace/</code> — Complete full-stack project</td></tr>
+        </tbody>
+      </table>
+      <pre>farmer_marketplace/
+├── backend/
+│   ├── app.py              ← FastAPI REST API (800+ lines, 25+ endpoints)
+│   ├── database.py         ← SQLite schema + PRAGMA foreign keys
+│   ├── models.py           ← Pydantic v2 request/response models
+│   └── seed_data.py        ← 5 farmers, 3 buyers, 17 products, 3 orders
+├── frontend/
+│   ├── index.html          ← Responsive UI (Tailwind CSS, 814 lines)
+│   └── app.js              ← Reactive JS controller (1579 lines)
+├── docs/
+│   ├── api-documentation.md        ← Full API reference (25 endpoints)
+│   ├── postman_collection.json     ← Postman v2.1 collection (12 requests)
+│   ├── presentation.html           ← Interactive 12-slide deck
+│   ├── demo_video.mp4              ← 720p HD demo video (215 seconds)
+│   └── video_player.html           ← Web video player page
+├── tests/
+│   └── test_marketplace.py         ← 9 automated unit tests (all PASS)
+├── README.md               ← 17-section project documentation
+├── .env.example
+└── .gitignore</pre>
+    </div>
+
+    <!-- 4 & 5. Deployment & API URL -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">4</span>
+        Deployment Link
+      </h2>
+      <table class="mb-4">
+        <thead><tr><th>Environment</th><th>URL</th></tr></thead>
+        <tbody>
+          <tr><td>🌐 Live Web App (Public)</td><td><code>http://localhost:8000</code> / <code>http://192.168.0.103:8000</code></td></tr>
+          <tr><td>🎬 Demo Video Player</td><td><code>http://localhost:8000/video</code></td></tr>
+          <tr><td>📊 Presentation Slides</td><td><code>http://localhost:8000/presentation</code></td></tr>
+        </tbody>
+      </table>
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 mt-6 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">5</span>
+        Backend API URL
+      </h2>
+      <table>
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge bg-blue-100 text-blue-800">GET</span></td><td><code>/api/users</code></td><td>List all users</td></tr>
+          <tr><td><span class="badge bg-green-100 text-green-800">POST</span></td><td><code>/api/users</code></td><td>Register a new user</td></tr>
+          <tr><td><span class="badge bg-blue-100 text-blue-800">GET</span></td><td><code>/api/products</code></td><td>Browse products with search & filters</td></tr>
+          <tr><td><span class="badge bg-green-100 text-green-800">POST</span></td><td><code>/api/products</code></td><td>Farmer: add new produce listing</td></tr>
+          <tr><td><span class="badge bg-yellow-100 text-yellow-800">PUT</span></td><td><code>/api/products/{id}</code></td><td>Update price / inventory / status</td></tr>
+          <tr><td><span class="badge bg-green-100 text-green-800">POST</span></td><td><code>/api/orders</code></td><td>Buyer: place an order (atomic stock check)</td></tr>
+          <tr><td><span class="badge bg-blue-100 text-blue-800">GET</span></td><td><code>/api/orders</code></td><td>List orders by buyer or farmer</td></tr>
+          <tr><td><span class="badge bg-yellow-100 text-yellow-800">PUT</span></td><td><code>/api/orders/{id}/status</code></td><td>Update order lifecycle status</td></tr>
+          <tr><td><span class="badge bg-blue-100 text-blue-800">GET</span></td><td><code>/api/admin/metrics</code></td><td>Platform health dashboard metrics</td></tr>
+          <tr><td><span class="badge bg-blue-100 text-blue-800">GET</span></td><td><code>/api/analytics/price-trends</code></td><td>Farm-gate vs. mandi price comparison</td></tr>
+          <tr><td><span class="badge bg-green-100 text-green-800">POST</span></td><td><code>/api/seed/reset</code></td><td>Reset demo data to seed state</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6. README -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">6</span>
+        README.md — 17 Sections
+      </h2>
+      <div class="grid grid-cols-2 gap-1 text-sm text-slate-700">
+        <div>1. Project Overview & Problem Statement</div><div>2. Team Details</div>
+        <div>3. Tech Stack</div><div>4. System Architecture Diagram</div>
+        <div>5. Setup & Installation Instructions</div><div>6. Environment Variables</div>
+        <div>7. API Endpoints Reference</div><div>8. Database Schema Documentation</div>
+        <div>9. Seed Data Description</div><div>10. Frontend Features</div>
+        <div>11. Order Lifecycle (5 stages)</div><div>12. Business Rules</div>
+        <div>13. Testing Guide (9 unit tests)</div><div>14. Security & Safety Notes</div>
+        <div>15. Known Limitations</div><div>16. Deployment Instructions</div>
+        <div>17. License & Contributions</div><div></div>
+      </div>
+    </div>
+
+    <!-- 7. Demo Video -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">7</span>
+        Demo Video
+      </h2>
+      <table class="mb-4">
+        <tbody>
+          <tr><th>Resolution</th><td>1280×720 (720p HD)</td></tr>
+          <tr><th>Duration</th><td>215 seconds (~3.5 minutes)</td></tr>
+          <tr><th>Format</th><td>MP4 (H.264)</td></tr>
+          <tr><th>File Size</th><td>2.9 MB</td></tr>
+          <tr><th>Web Player</th><td><code>http://localhost:8000/video</code></td></tr>
+          <tr><th>Download</th><td><code>http://localhost:8000/docs-view/demo_video.mp4</code></td></tr>
+        </tbody>
+      </table>
+      <table>
+        <thead><tr><th>Part</th><th>Timestamp</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>0:00–0:30</td><td>Problem Statement & Solution Overview</td></tr>
+          <tr><td>2</td><td>0:30–1:20</td><td>Farmer Hub — Listing produce, managing inventory</td></tr>
+          <tr><td>3</td><td>1:20–2:10</td><td>Buyer Experience — Search, cart, checkout</td></tr>
+          <tr><td>4</td><td>2:10–2:50</td><td>Order Lifecycle — Status progression & farmer acceptance</td></tr>
+          <tr><td>5</td><td>2:50–3:35</td><td>Admin Moderation & Price Trends Dashboard</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 8. Presentation -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">8</span>
+        PowerPoint Presentation — 12 Slides
+      </h2>
+      <p class="text-sm text-slate-600 mb-3">Interactive web presentation at <code>http://localhost:8000/presentation</code> — navigate with ← → arrow keys.</p>
+      <table>
+        <thead><tr><th>Slide</th><th>Title</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Cover — AgriMarket · HACK-P309 · Team</td></tr>
+          <tr><td>2</td><td>Problem Statement & Market Pain Points</td></tr>
+          <tr><td>3</td><td>Proposed Solution & Value Proposition</td></tr>
+          <tr><td>4</td><td>System Architecture Overview</td></tr>
+          <tr><td>5</td><td>Tech Stack (FastAPI · SQLite · Tailwind · Cloudflare)</td></tr>
+          <tr><td>6</td><td>Core Features — Farmer Hub & Product Listings</td></tr>
+          <tr><td>7</td><td>Core Features — Buyer Search, Cart & Checkout</td></tr>
+          <tr><td>8</td><td>Order Lifecycle — 5-Stage Status Flow</td></tr>
+          <tr><td>9</td><td>Admin Moderation & Duplicate Detection</td></tr>
+          <tr><td>10</td><td>Price Trends & Analytics Dashboard</td></tr>
+          <tr><td>11</td><td>Testing Evidence — 9 Tests Passed</td></tr>
+          <tr><td>12</td><td>Impact, Scalability & Future Roadmap</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 9. API Documentation -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">9</span>
+        API Documentation
+      </h2>
+      <p class="text-sm mb-3">File: <code>docs/api-documentation.md</code> &nbsp;|&nbsp; Postman: <code>docs/postman_collection.json</code> (12 requests)</p>
+      <pre>GET /api/products?status=active
+Response: [{ "id":11, "name":"Farm Fresh A2 Gir Cow Raw Milk",
+  "category":"Dairy & Honey", "price":68.0, "unit":"liter",
+  "available_quantity":70.0, "min_order_quantity":1.0,
+  "farmer_phone":"+91 80748 68505", "farm_name":"Happy Cow Artisanal Dairy" }]
+
+POST /api/orders
+Body: { "buyer_id":6, "items":[{"product_id":1,"quantity":5}],
+        "payment_method":"cash_on_pickup", "fulfillment_type":"pickup" }
+Response: { "id":4, "status":"requested", "total_amount":175.0 }
+
+PUT /api/orders/4/status
+Body: { "status":"accepted", "farmer_id":1 }
+
+GET /api/admin/metrics
+Response: { "total_farmers":5, "total_buyers":3, "active_products":16,
+  "flagged_products":1, "total_orders":3, "gross_merchandise_value":11125.0 }</pre>
+    </div>
+
+    <!-- 10. Testing -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">10</span>
+        Testing Evidence — 9/9 PASSED ✅
+      </h2>
+      <pre class="mb-4">Ran 9 tests in 1.352s
+OK  ✅ ALL TESTS PASSED</pre>
+      <table>
+        <thead><tr><th>#</th><th>Test Name</th><th>What It Tests</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><code>test_seeded_users_and_products</code></td><td>≥5 farmers, ≥15 products in DB</td><td><span class="badge pass">✅ PASS</span></td></tr>
+          <tr><td>2</td><td><code>test_stock_limit_enforcement</code></td><td>Cannot order more than available stock</td><td><span class="badge pass">✅ PASS</span></td></tr>
+          <tr><td>3</td><td><code>test_order_placement_deducts_inventory</code></td><td>Stock reduces atomically after order</td><td><span class="badge pass">✅ PASS</span></td></tr>
+          <tr><td>4</td><td><code>test_order_cancellation_restores_inventory</code></td><td>Cancel restores stock to pool</td><td><span class="badge pass">✅ PASS</span></td></tr>
+          <tr><td>5</td><td><code>test_order_lifecycle_flow</code></td><td>requested→accepted→ready→completed</td><td><span class="badge pass">✅ PASS</span></td></tr>
+          <tr><td>6</td><td><code>test_illegal_order_transition_rejected</code></td><td>Completed order cannot be re-cancelled</td><td><span class="badge pass">✅ PASS</span></td></tr>
+          <tr><td>7</td><td><code>test_minimum_order_quantity_enforcement</code></td><td>Orders below MOQ are rejected</td><td><span class="badge pass">✅ PASS</span></td></tr>
+          <tr><td>8</td><td><code>test_bulk_discount_calculation</code></td><td>Bulk discount applies at threshold qty</td><td><span class="badge pass">✅ PASS</span></td></tr>
+          <tr><td>9</td><td><code>test_duplicate_product_detection_and_moderation</code></td><td>Admin flags duplicate listings</td><td><span class="badge pass">✅ PASS</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 11. Architecture -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">11</span>
+        Architecture & Database Design
+      </h2>
+      <pre>┌─────────────────────────────────────────────────────────┐
+│  CLIENT LAYER                                            │
+│  Browser (index.html + app.js) · Tailwind CSS           │
+│  Roles: Farmer | Buyer | Admin                          │
+└────────────────────┬────────────────────────────────────┘
+                     │ HTTPS (Cloudflare Tunnel / Local)
+┌────────────────────▼────────────────────────────────────┐
+│  BACKEND LAYER — FastAPI (Uvicorn · Python 3.12)        │
+│  /api/users   /api/products   /api/orders               │
+│  /api/admin   /api/analytics  /api/seed/reset           │
+│  Business Logic:                                        │
+│  • Atomic stock deduction (SQLite transactions)         │
+│  • Order lifecycle: requested→accepted→ready→completed  │
+│  • Bulk discount engine · Duplicate detection           │
+└────────────────────┬────────────────────────────────────┘
+                     │
+┌────────────────────▼────────────────────────────────────┐
+│  DATABASE LAYER — SQLite (PRAGMA foreign_keys = ON)     │
+│  users · products · orders · order_items                │
+│  moderation_logs                                        │
+└─────────────────────────────────────────────────────────┘</pre>
+      <h3 class="font-bold text-slate-700 mt-4 mb-2 text-sm">Tech Stack</h3>
+      <table>
+        <thead><tr><th>Layer</th><th>Technology</th><th>Version</th></tr></thead>
+        <tbody>
+          <tr><td>Backend Framework</td><td>FastAPI</td><td>0.115+</td></tr>
+          <tr><td>ASGI Server</td><td>Uvicorn</td><td>0.32+</td></tr>
+          <tr><td>Database</td><td>SQLite</td><td>3 (built-in)</td></tr>
+          <tr><td>Validation</td><td>Pydantic v2</td><td>2.9+</td></tr>
+          <tr><td>Frontend Styling</td><td>Tailwind CSS</td><td>CDN</td></tr>
+          <tr><td>Frontend Logic</td><td>Vanilla JavaScript</td><td>ES2022</td></tr>
+          <tr><td>Testing</td><td>Python unittest + httpx</td><td>stdlib</td></tr>
+          <tr><td>Language</td><td>Python 3.12</td><td>3.12+</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 12. Team Contributions -->
+    <div class="section bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4 flex items-center gap-2">
+        <span class="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-extrabold">12</span>
+        Team Contributions
+      </h2>
+      <table>
+        <thead><tr><th>Name</th><th>Roll Number</th><th>Branch</th><th>Contributions</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Gayam Venkata Srinivasulu</strong> ⭐</td>
+            <td><code>25MVCSCR0013</code></td>
+            <td>CSE (CS)</td>
+            <td>Project architecture, FastAPI backend design, SQLite schema, order lifecycle state machine, deployment & Cloudflare tunnel, team coordination</td>
+          </tr>
+          <tr>
+            <td>SHADIK ALI</td>
+            <td><code>25MVCAIR0102</code></td>
+            <td>CSE (AI)</td>
+            <td>Seed data (5 farmers, 17 products), 9 automated unit tests, README.md (17 sections), API documentation, Postman collection, demo video generation</td>
+          </tr>
+          <tr>
+            <td>PITLA PAVAN FANINDRA</td>
+            <td><code>25MVCSCR0044</code></td>
+            <td>CSE (CS)</td>
+            <td>Pydantic v2 models, REST API endpoints (products, orders, admin, analytics), bulk discount engine, stock validation, admin moderation routes</td>
+          </tr>
+          <tr>
+            <td>B PARDASARATHI REDDY</td>
+            <td><code>25MVCSCR0004</code></td>
+            <td>CSE (CS)</td>
+            <td>Responsive frontend UI (index.html), Tailwind CSS, JavaScript controller (app.js), search & filter engine, cart & checkout, 12-slide presentation, multilingual i18n</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Platform Metrics -->
+    <div class="section bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-6">
+      <h2 class="text-lg font-bold font-display text-emerald-800 mb-4">📊 Platform Metrics (Live Data)</h2>
+      <div class="grid grid-cols-3 sm:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl p-3 text-center shadow-sm"><div class="text-2xl font-extrabold text-emerald-700">5</div><div class="text-xs text-slate-500">Farmers</div></div>
+        <div class="bg-white rounded-xl p-3 text-center shadow-sm"><div class="text-2xl font-extrabold text-emerald-700">3</div><div class="text-xs text-slate-500">Buyers</div></div>
+        <div class="bg-white rounded-xl p-3 text-center shadow-sm"><div class="text-2xl font-extrabold text-emerald-700">16</div><div class="text-xs text-slate-500">Products</div></div>
+        <div class="bg-white rounded-xl p-3 text-center shadow-sm"><div class="text-2xl font-extrabold text-emerald-700">5</div><div class="text-xs text-slate-500">Categories</div></div>
+        <div class="bg-white rounded-xl p-3 text-center shadow-sm"><div class="text-2xl font-extrabold text-emerald-700">9/9</div><div class="text-xs text-slate-500">Tests Passed</div></div>
+        <div class="bg-white rounded-xl p-3 text-center shadow-sm"><div class="text-2xl font-extrabold text-emerald-700">12</div><div class="text-xs text-slate-500">Slides</div></div>
+        <div class="bg-white rounded-xl p-3 text-center shadow-sm"><div class="text-2xl font-extrabold text-emerald-700">3.5m</div><div class="text-xs text-slate-500">Demo Video</div></div>
+        <div class="bg-white rounded-xl p-3 text-center shadow-sm"><div class="text-2xl font-extrabold text-emerald-700">₹11,125</div><div class="text-xs text-slate-500">GMV</div></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center text-xs text-slate-400 pb-4">
+      AgriMarket — HACK-P309 | Backend Web Development Hackathon | 30 October 2026
+    </div>
+  </div>
+</body>
+</html>

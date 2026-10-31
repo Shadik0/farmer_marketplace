@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriMarket — Direct Farmer to Buyer Marketplace</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            emerald: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            },
+            amber: {
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
+    .badge-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .6; }
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+  <!-- TOP SAFETY & PROTOTYPE DISCLAIMER BANNER -->
+  <div class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white text-xs px-4 py-2 border-b border-emerald-900/40">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center space-x-2">
+        <span class="bg-emerald-500/30 text-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">HACK-P309 Prototype</span>
+        <span id="txtSafetyBanner">🛡️ <strong>Prototype Simulation Notice:</strong> Payments are simulated (Cash on Pickup / COD / Demo Instant UPI). Delivery is coordinated between farmer & buyer.</span>
+      </div>
+      <div class="flex items-center space-x-2 text-xs">
+        <a href="/video" target="_blank" class="bg-amber-400 hover:bg-amber-300 text-slate-900 text-[11px] font-extrabold px-2.5 py-0.5 rounded shadow transition flex items-center space-x-1">
+          <span>🎬</span>
+          <span>Demo Video</span>
+        </a>
+        <a href="/presentation" target="_blank" class="bg-emerald-900/80 hover:bg-emerald-900 text-white text-[11px] font-semibold px-2.5 py-0.5 rounded transition flex items-center space-x-1">
+          <span>📊</span>
+          <span>Slides Deck</span>
+        </a>
+        <button onclick="resetDemoData()" class="bg-white/10 hover:bg-white/20 text-white text-[11px] px-2.5 py-0.5 rounded transition font-medium flex items-center space-x-1">
+          <span>🔄</span>
+          <span id="btnResetDemo">Reset Demo</span>
+        </button>
+        <div class="flex items-center space-x-1 bg-black/20 px-2 py-0.5 rounded text-[11px]">
+          <span>🌐</span>
+          <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-transparent text-white border-0 focus:ring-0 cursor-pointer text-xs pr-1">
+            <option value="en" class="text-slate-800">English</option>
+            <option value="hi" class="text-slate-800">हिंदी (Hindi)</option>
+            <option value="es" class="text-slate-800">Español</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Brand Logo -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('marketplace')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white text-xl shadow-md shadow-emerald-500/20">
+            🌾
+          </div>
+          <div>
+            <div class="font-display font-bold text-xl text-slate-900 leading-tight tracking-tight flex items-center gap-1.5">
+              AgriMarket
+              <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full font-semibold">Direct</span>
+            </div>
+            <p class="text-[11px] text-slate-500 leading-none">Farmer-to-Buyer Direct Exchange</p>
+          </div>
+        </div>
+
+        <!-- Primary Navigation Tabs -->
+        <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <button id="navMarketplace" onclick="switchTab('marketplace')" class="nav-tab px-3 py-2 rounded-lg text-sm font-semibold text-emerald-700 bg-emerald-50 flex items-center space-x-1.5 transition">
+            <span>🛒</span>
+            <span id="lblNavMarketplace">Produce Market</span>
+          </button>
+          <button id="navFarmer" onclick="switchTab('farmer')" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center space-x-1.5 transition">
+            <span>👨‍🌾</span>
+            <span id="lblNavFarmer">Farmer Hub</span>
+            <span id="farmerBadgeOrders" class="hidden text-[10px] bg-amber-500 text-white px-1.5 py-0.2 rounded-full font-bold ml-1">0</span>
+          </button>
+          <button id="navBuyer" onclick="switchTab('buyer')" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center space-x-1.5 transition">
+            <span>📦</span>
+            <span id="lblNavBuyer">My Orders</span>
+            <span id="buyerBadgeOrders" class="hidden text-[10px] bg-emerald-600 text-white px-1.5 py-0.2 rounded-full font-bold ml-1">0</span>
+          </button>
+          <button id="navTrends" onclick="switchTab('trends')" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center space-x-1.5 transition">
+            <span>📊</span>
+            <span id="lblNavTrends">Price Trends</span>
+          </button>
+          <button id="navAdmin" onclick="switchTab('admin')" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center space-x-1.5 transition">
+            <span>🛡️</span>
+            <span id="lblNavAdmin">Moderation</span>
+            <span id="adminBadgeFlags" class="hidden text-[10px] bg-rose-500 text-white px-1.5 py-0.2 rounded-full font-bold ml-1">0</span>
+          </button>
+        </nav>
+
+        <!-- Right Side: User Switcher & Cart Trigger -->
+        <div class="flex items-center space-x-3">
+          
+          <!-- Role & User Switcher Dropdown (Crucial for Hackathon Evaluators) -->
+          <div class="relative">
+            <div class="flex items-center bg-slate-100 hover:bg-slate-200/80 rounded-xl p-1.5 pr-3 cursor-pointer border border-slate-200 transition" onclick="toggleUserDropdown()">
+              <img id="currUserAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" class="w-7 h-7 rounded-lg object-cover mr-2 border border-white shadow-sm" alt="Avatar">
+              <div class="text-left leading-tight hidden sm:block">
+                <div class="text-xs font-bold text-slate-900 flex items-center gap-1">
+                  <span id="currUserName">Priya Sharma</span>
+                  <span id="currUserRoleBadge" class="text-[9px] px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded font-bold uppercase">Buyer</span>
+                </div>
+                <div id="currUserLocation" class="text-[10px] text-slate-500">Mumbai, MH</div>
+              </div>
+              <svg class="w-4 h-4 ml-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+
+            <!-- Switcher Menu -->
+            <div id="userDropdownMenu" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-200/80 py-2 z-50 text-xs">
+              <div class="px-3 py-1.5 border-b border-slate-100 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                ⚡ Quick Switch Role & Account
+              </div>
+              
+              <div class="py-1">
+                <div class="px-3 py-1 text-[10px] font-bold text-emerald-800 uppercase bg-emerald-50/60">Sample Farmers (5 Profiles)</div>
+                <div id="farmersSwitchList" class="space-y-0.5"></div>
+              </div>
+
+              <div class="py-1 border-t border-slate-100">
+                <div class="px-3 py-1 text-[10px] font-bold text-blue-800 uppercase bg-blue-50/60">Sample Buyers (Household, Restaurant, Wholesaler)</div>
+                <div id="buyersSwitchList" class="space-y-0.5"></div>
+              </div>
+
+              <div class="py-1 border-t border-slate-100">
+                <div class="px-3 py-1 text-[10px] font-bold text-purple-800 uppercase bg-purple-50/60">Platform Moderation</div>
+                <div id="adminSwitchList" class="space-y-0.5"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart Trigger Button -->
+          <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-md shadow-emerald-600/20 flex items-center space-x-1.5 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <span id="cartCountBadge" class="text-xs font-bold px-1.5 py-0.2 bg-white text-emerald-700 rounded-full">0</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APPLICATION CONTENT CONTAINER -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+
+    <!-- TAB 1: BUYER MARKETPLACE VIEW -->
+    <section id="viewMarketplace" class="space-y-6">
+      
+      <!-- HERO BANNER -->
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white p-6 sm:p-10 shadow-xl shadow-emerald-950/10">
+        <div class="relative z-10 max-w-2xl space-y-3">
+          <div class="inline-flex items-center space-x-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs px-3 py-1 rounded-full font-medium">
+            <span>🌱 Fair Trade & Verified Provenance</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>Zero Middleman Markup</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-display leading-tight">
+            Fresh Produce, Harvested Direct from Local Farms.
+          </h1>
+          <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed">
+            Order directly from verified growers in Nashik, Solan, Ludhiana, Anand & Wayanad. Transparent pricing, harvest date verification, and farm gate pickup or local delivery.
+          </p>
+
+          <!-- Quick Search Bar inside Hero -->
+          <div class="pt-2">
+            <div class="bg-white rounded-2xl p-2 flex items-center shadow-2xl text-slate-800 max-w-xl">
+              <span class="text-slate-400 pl-3">🔍</span>
+              <input type="text" id="heroSearchInput" oninput="onSearchInput(this.value)" placeholder="Search organic tomatoes, basmati, ghee, apples, farm name..." class="w-full px-3 py-2 text-sm border-0 focus:outline-none focus:ring-0 text-slate-800 placeholder-slate-400">
+              <button onclick="applyFilters()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition">
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative background shapes -->
+        <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:block opacity-20 text-9xl pointer-events-none">
+          🥦
+        </div>
+      </div>
+
+      <!-- FILTER CONTROLS & CATEGORY TABS -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80 space-y-4">
+        
+        <!-- Category Chips -->
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center space-x-1.5 overflow-x-auto pb-1 max-w-full" id="categoryChips">
+            <button onclick="setCategory('All')" class="cat-chip active px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-emerald-700 text-white shadow-sm transition" data-cat="All">All Produce</button>
+            <button onclick="setCategory('Vegetables')" class="cat-chip px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="Vegetables">🥕 Vegetables</button>
+            <button onclick="setCategory('Fruits')" class="cat-chip px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="Fruits">🍎 Fruits</button>
+            <button onclick="setCategory('Grains & Pulses')" class="cat-chip px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="Grains & Pulses">🌾 Grains & Pulses</button>
+            <button onclick="setCategory('Dairy & Honey')" class="cat-chip px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="Dairy & Honey">🥛 Dairy & Honey</button>
+            <button onclick="setCategory('Herbs & Spices')" class="cat-chip px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-cat="Herbs & Spices">🌿 Herbs & Spices</button>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <button onclick="toggleFilterDrawer()" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center space-x-1 transition">
+              <span>⚙️</span>
+              <span id="lblFilterBtn">More Filters</span>
+            </button>
+            <select id="sortBySelect" onchange="applyFilters()" class="text-xs bg-slate-100 border-0 rounded-xl px-3 py-1.5 font-medium text-slate-700 focus:ring-2 focus:ring-emerald-500 cursor-pointer">
+              <option value="freshness">Sort: Harvest Freshness</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+              <option value="rating">Top Farmer Rating</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Extended Filters Drawer (Collapsible) -->
+        <div id="filterDrawer" class="hidden pt-3 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          <!-- Price Filter -->
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Max Price per Unit (₹)</label>
+            <div class="flex items-center space-x-2">
+              <input type="range" id="priceRangeInput" min="20" max="2000" step="10" value="2000" oninput="document.getElementById('priceRangeVal').innerText = '₹' + this.value; applyFilters();" class="w-full accent-emerald-600">
+              <span id="priceRangeVal" class="font-bold text-slate-800 w-16 text-right">₹2000</span>
+            </div>
+          </div>
+
+          <!-- Location Filter -->
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Farming Region / Location</label>
+            <select id="locationSelect" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700">
+              <option value="All">All Regions</option>
+              <option value="Nashik">Nashik, Maharashtra</option>
+              <option value="Solan">Solan, Himachal Pradesh</option>
+              <option value="Ludhiana">Ludhiana, Punjab</option>
+              <option value="Anand">Anand, Gujarat</option>
+              <option value="Wayanad">Wayanad, Kerala</option>
+            </select>
+          </div>
+
+          <!-- Delivery Mode -->
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Fulfillment Option</label>
+            <select id="deliverySelect" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700">
+              <option value="All">All Options (Pickup or Delivery)</option>
+              <option value="pickup_only">Farm Gate Pickup Only</option>
+              <option value="delivery_only">Local Delivery Only</option>
+            </select>
+          </div>
+
+          <!-- Stock & Organic Toggle -->
+          <div class="flex items-center justify-between sm:justify-start sm:space-x-4 pt-4">
+            <label class="inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="chkInStockOnly" onchange="applyFilters()" class="rounded text-emerald-600 focus:ring-emerald-500 mr-1.5" checked>
+              <span class="font-medium text-slate-700">In-Stock Only</span>
+            </label>
+            <button onclick="resetFilters()" class="text-emerald-700 hover:underline font-semibold">
+              Reset Filters
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RESULTS HEADER & COUNT -->
+      <div class="flex items-center justify-between text-xs text-slate-500 px-1">
+        <div>
+          Showing <span id="productResultCount" class="font-bold text-slate-900">0</span> fresh produce listings
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Live Farm Inventory Synchronized</span>
+        </div>
+      </div>
+
+      <!-- PRODUCT CARDS GRID -->
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </section>
+
+    <!-- TAB 2: FARMER DASHBOARD -->
+    <section id="viewFarmer" class="hidden space-y-6">
+      
+      <!-- FARMER BIO & STATS HEADER -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-center space-x-4">
+            <img id="farmerHeroAvatar" src="" class="w-16 h-16 rounded-2xl object-cover border-2 border-emerald-500 shadow-sm" alt="Farmer">
+            <div>
+              <div class="flex items-center space-x-2">
+                <h2 id="farmerHeroName" class="text-2xl font-bold font-display text-slate-900">Ramesh Patel</h2>
+                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-bold">Verified Grower</span>
+              </div>
+              <p id="farmerHeroFarmName" class="text-sm font-semibold text-emerald-700">Green Meadows Organic Farm</p>
+              <p id="farmerHeroLocation" class="text-xs text-slate-500">📍 Nashik, Maharashtra • 📞 8074868505</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <button onclick="openAddProductModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md shadow-emerald-600/20 flex items-center space-x-2 transition">
+              <span class="text-base leading-none">+</span>
+              <span id="lblAddProduce">List New Produce</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Farmer KPI Metric Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-100">
+          <div class="bg-emerald-50/60 rounded-2xl p-4 border border-emerald-100">
+            <div class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider">Active Produce</div>
+            <div id="statFarmerActiveProducts" class="text-2xl font-extrabold text-emerald-950 font-display mt-1">0</div>
+            <div class="text-[10px] text-emerald-600 mt-0.5">Live in catalog</div>
+          </div>
+          <div class="bg-blue-50/60 rounded-2xl p-4 border border-blue-100">
+            <div class="text-[11px] font-bold text-blue-800 uppercase tracking-wider">Total Available Stock</div>
+            <div id="statFarmerTotalStock" class="text-2xl font-extrabold text-blue-950 font-display mt-1">0</div>
+            <div class="text-[10px] text-blue-600 mt-0.5">Combined units</div>
+          </div>
+          <div class="bg-amber-50/60 rounded-2xl p-4 border border-amber-100">
+            <div class="text-[11px] font-bold text-amber-800 uppercase tracking-wider">Pending Orders</div>
+            <div id="statFarmerPendingOrders" class="text-2xl font-extrabold text-amber-950 font-display mt-1">0</div>
+            <div class="text-[10px] text-amber-600 mt-0.5">Awaiting fulfillment</div>
+          </div>
+          <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200">
+            <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Farm Revenue</div>
+            <div id="statFarmerRevenue" class="text-2xl font-extrabold text-slate-900 font-display mt-1">₹0</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">Simulated order value</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INCOMING ORDERS STREAM -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold font-display text-slate-900 flex items-center space-x-2">
+              <span>📥 Incoming Buyer Orders</span>
+              <span id="farmerPendingOrderCount" class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">0 Pending</span>
+            </h3>
+            <p class="text-xs text-slate-500">Update order fulfillment status from request to accepted, ready, or completed.</p>
+          </div>
+        </div>
+
+        <div id="farmerOrdersList" class="space-y-3">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- FARMER INVENTORY MANAGEMENT TABLE -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold font-display text-slate-900">📦 Produce Inventory & Price Controls</h3>
+            <p class="text-xs text-slate-500">Manage available quantities, edit prices, or toggle active listings.</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-600">
+            <thead class="bg-slate-50 text-slate-700 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-3">Produce</th>
+                <th class="py-3 px-3">Category</th>
+                <th class="py-3 px-3">Unit Price</th>
+                <th class="py-3 px-3">Available Stock</th>
+                <th class="py-3 px-3">Harvest Date</th>
+                <th class="py-3 px-3">Status</th>
+                <th class="py-3 px-3 text-right">Quick Actions</th>
+              </tr>
+            </thead>
+            <tbody id="farmerInventoryTable" class="divide-y divide-slate-100">
+              <!-- Injected via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 3: BUYER DASHBOARD & ORDER TRACKING -->
+    <section id="viewBuyer" class="hidden space-y-6">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-full">Buyer Portal</span>
+            <h2 class="text-2xl font-bold font-display text-slate-900 mt-1">My Orders & Direct Delivery Tracking</h2>
+            <p class="text-xs text-slate-500">Track real-time order states (`requested` ➔ `accepted` ➔ `ready` ➔ `completed`) and manage cancellations.</p>
+          </div>
+          <button onclick="switchTab('marketplace')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition">
+            Browse More Produce 🛒
+          </button>
+        </div>
+      </div>
+
+      <div id="buyerOrdersList" class="space-y-4">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </section>
+
+    <!-- TAB 4: FAIR PRICE & MARKET TRENDS -->
+    <section id="viewTrends" class="hidden space-y-6">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-3">
+        <div class="inline-flex items-center space-x-2 bg-amber-50 border border-amber-200 text-amber-800 text-xs px-3 py-1 rounded-full font-medium">
+          <span>📈 Market Transparency & Margin Analysis</span>
+        </div>
+        <h2 class="text-2xl font-bold font-display text-slate-900">Direct-to-Buyer Price Benchmark Comparison</h2>
+        <p class="text-sm text-slate-600 max-w-3xl">
+          Traditional produce distribution passes through 3 to 5 middlemen (aggregators, commission agents, regional mandi wholesalers, cold storage operators, and neighborhood grocers). 
+          <strong>AgriMarket eliminates intermediary gouging</strong>, giving buyers average <strong>20-35% savings</strong> while farmers earn <strong>25-40% higher margins</strong>.
+        </p>
+
+        <!-- Benchmark Table -->
+        <div class="overflow-x-auto pt-4">
+          <table class="w-full text-left text-xs text-slate-600">
+            <thead class="bg-slate-50 text-slate-700 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-3">Produce Item</th>
+                <th class="py-3 px-3">Category</th>
+                <th class="py-3 px-3">Unit</th>
+                <th class="py-3 px-3">Direct Farmer Price</th>
+                <th class="py-3 px-3">Mandi / Retail Estimate</th>
+                <th class="py-3 px-3 text-emerald-700 font-bold">Buyer Direct Savings</th>
+                <th class="py-3 px-3">Margin Advantage</th>
+              </tr>
+            </thead>
+            <tbody id="priceTrendsTable" class="divide-y divide-slate-100">
+              <!-- Injected via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 5: ADMIN MODERATION DESK -->
+    <section id="viewAdmin" class="hidden space-y-6">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-purple-700 uppercase tracking-wider bg-purple-50 px-2.5 py-1 rounded-full">Platform Trust & Safety</span>
+            <h2 class="text-2xl font-bold font-display text-slate-900 mt-1">Admin Moderation & Quality Desk</h2>
+            <p class="text-xs text-slate-500">Detect and moderate duplicate listings, unreasonable pricing, or inappropriate entries across all farms.</p>
+          </div>
+          <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1.5 rounded-xl font-mono">Role: Super Admin</span>
+        </div>
+
+        <!-- Platform Health Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-6 pt-6 border-t border-slate-100 text-center">
+          <div class="p-3 bg-slate-50 rounded-xl">
+            <div class="text-[10px] font-bold text-slate-500 uppercase">Farmers</div>
+            <div id="admTotalFarmers" class="text-xl font-bold text-slate-900 font-display mt-0.5">0</div>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl">
+            <div class="text-[10px] font-bold text-slate-500 uppercase">Buyers</div>
+            <div id="admTotalBuyers" class="text-xl font-bold text-slate-900 font-display mt-0.5">0</div>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl">
+            <div class="text-[10px] font-bold text-slate-500 uppercase">Active Produce</div>
+            <div id="admActiveProducts" class="text-xl font-bold text-emerald-700 font-display mt-0.5">0</div>
+          </div>
+          <div class="p-3 bg-rose-50 rounded-xl border border-rose-100">
+            <div class="text-[10px] font-bold text-rose-600 uppercase">Flagged / Dupes</div>
+            <div id="admFlaggedProducts" class="text-xl font-bold text-rose-700 font-display mt-0.5">0</div>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl">
+            <div class="text-[10px] font-bold text-slate-500 uppercase">Orders</div>
+            <div id="admTotalOrders" class="text-xl font-bold text-slate-900 font-display mt-0.5">0</div>
+          </div>
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100">
+            <div class="text-[10px] font-bold text-emerald-800 uppercase">Platform GMV</div>
+            <div id="admPlatformGMV" class="text-xl font-bold text-emerald-900 font-display mt-0.5">₹0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Moderation Queue -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <h3 class="text-lg font-bold font-display text-slate-900">🛡️ Listing Moderation Queue</h3>
+        <p class="text-xs text-slate-500">Review listings flagged by automated duplicate detection or user reports.</p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-600">
+            <thead class="bg-slate-50 text-slate-700 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-3">Product Name</th>
+                <th class="py-3 px-3">Farmer & Farm</th>
+                <th class="py-3 px-3">Unit Price</th>
+                <th class="py-3 px-3">Stock</th>
+                <th class="py-3 px-3">Moderation Flag</th>
+                <th class="py-3 px-3">Current Status</th>
+                <th class="py-3 px-3 text-right">Moderator Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminModerationTable" class="divide-y divide-slate-100">
+              <!-- Injected via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- CART & CHECKOUT SLIDE-OVER DRAWER -->
+  <div id="cartDrawer" class="hidden fixed inset-0 z-50 overflow-hidden">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer(false)"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+        
+        <!-- Cart Header -->
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-emerald-50/50">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">🛒</span>
+            <div>
+              <h3 class="font-display font-bold text-slate-900 text-lg leading-tight">Your Farm Cart</h3>
+              <p class="text-[11px] text-slate-500">Atomic inventory reservation & direct dispatch</p>
+            </div>
+          </div>
+          <button onclick="toggleCartDrawer(false)" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200">
+            ✕
+          </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsContainer" class="flex-grow overflow-y-auto p-5 space-y-4">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- Checkout Section -->
+        <div class="p-5 border-t border-slate-100 bg-slate-50/80 space-y-4">
+          
+          <!-- Delivery Options -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Fulfillment Preference</label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <label class="flex items-center p-2 rounded-xl border border-slate-200 bg-white cursor-pointer hover:border-emerald-500">
+                <input type="radio" name="cartDeliveryType" value="pickup" checked onchange="updateCartSummary()" class="text-emerald-600 focus:ring-emerald-500 mr-2">
+                <div>
+                  <div class="font-bold text-slate-800">🚜 Farm Pickup</div>
+                  <div class="text-[10px] text-emerald-600">Free • Farm Gate</div>
+                </div>
+              </label>
+              <label class="flex items-center p-2 rounded-xl border border-slate-200 bg-white cursor-pointer hover:border-emerald-500">
+                <input type="radio" name="cartDeliveryType" value="delivery" onchange="updateCartSummary()" class="text-emerald-600 focus:ring-emerald-500 mr-2">
+                <div>
+                  <div class="font-bold text-slate-800">🚚 Local Delivery</div>
+                  <div class="text-[10px] text-slate-500">₹40 • Within 15km</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Delivery Address / Instructions -->
+          <div id="deliveryAddressGroup" class="hidden">
+            <label class="block text-xs font-bold text-slate-700 mb-1">Delivery Address & Instructions</label>
+            <input type="text" id="cartDeliveryAddress" placeholder="Enter delivery address or gate instructions..." class="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          </div>
+
+          <!-- Simulated Payment Options -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Simulated Payment Method</label>
+            <select id="cartPaymentMethod" class="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
+              <option value="cash_on_pickup">💵 Cash on Farm Gate Pickup</option>
+              <option value="cash_on_delivery">📦 Cash on Delivery (COD)</option>
+              <option value="simulated_instant_transfer">⚡ Demo Simulated UPI / Instant Bank Transfer</option>
+            </select>
+            <p class="text-[10px] text-slate-500 mt-1 italic">
+              🔒 Prototype mode: No real banking credentials or card details are ever requested.
+            </p>
+          </div>
+
+          <!-- Total Calculation -->
+          <div class="space-y-1.5 pt-2 border-t border-slate-200 text-xs">
+            <div class="flex justify-between text-slate-600">
+              <span>Produce Subtotal:</span>
+              <span id="cartSubtotal" class="font-semibold text-slate-800">₹0.00</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>Fulfillment Fee:</span>
+              <span id="cartDeliveryFee" class="font-semibold text-slate-800">₹0.00</span>
+            </div>
+            <div class="flex justify-between text-slate-900 font-bold text-sm pt-1 border-t border-slate-200">
+              <span>Total Payable:</span>
+              <span id="cartTotal" class="text-emerald-700 font-extrabold text-base">₹0.00</span>
+            </div>
+          </div>
+
+          <!-- Order Submit Button -->
+          <button id="btnPlaceOrder" onclick="submitOrderRequest()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-600/30 transition flex items-center justify-center space-x-2">
+            <span>Send Order Request to Farmer</span>
+            <span>➔</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT PRODUCE LISTING -->
+  <div id="modalAddProduct" class="hidden fixed inset-0 z-50 overflow-y-auto">
+    <div class="min-h-screen px-4 text-center flex items-center justify-center">
+      <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeAddProductModal()"></div>
+      
+      <div class="inline-block w-full max-w-2xl bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all my-8 p-6 sm:p-8 z-10 border border-slate-200/80">
+        
+        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div class="flex items-center space-x-2">
+            <span class="text-2xl">🌾</span>
+            <div>
+              <h3 class="text-xl font-bold font-display text-slate-900">List Fresh Produce for Sale</h3>
+              <p class="text-xs text-slate-500">Provide accurate harvest dates, unit pricing, and quantity available.</p>
+            </div>
+          </div>
+          <button onclick="closeAddProductModal()" class="text-slate-400 hover:text-slate-700 text-lg p-1">✕</button>
+        </div>
+
+        <form id="formAddProduct" onsubmit="handleCreateProduct(event)" class="mt-4 space-y-4 text-xs">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Produce Name *</label>
+              <input type="text" id="inpProdName" required placeholder="e.g. Organic Roma Tomatoes" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Category *</label>
+              <select id="inpProdCategory" required class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                <option value="Vegetables">Vegetables</option>
+                <option value="Fruits">Fruits</option>
+                <option value="Grains & Pulses">Grains & Pulses</option>
+                <option value="Dairy & Honey">Dairy & Honey</option>
+                <option value="Herbs & Spices">Herbs & Spices</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Selling Unit *</label>
+              <select id="inpProdUnit" required class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                <option value="kg">kg</option>
+                <option value="bunch">bunch</option>
+                <option value="crate (20kg)">crate (20kg)</option>
+                <option value="box (10kg)">box (10kg)</option>
+                <option value="bag (25kg)">bag (25kg)</option>
+                <option value="bag (10kg)">bag (10kg)</option>
+                <option value="liter">liter</option>
+                <option value="jar (500g)">jar (500g)</option>
+                <option value="jar (1 Liter)">jar (1 Liter)</option>
+                <option value="pack (500g)">pack (500g)</option>
+                <option value="pack (250g)">pack (250g)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Farmer Price per Unit (₹) *</label>
+              <input type="number" id="inpProdPrice" min="1" step="0.5" required placeholder="35.0" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Available Quantity in Stock *</label>
+              <input type="number" id="inpProdQuantity" min="1" step="1" required placeholder="100" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Minimum Order Qty</label>
+              <input type="number" id="inpProdMOQ" min="1" step="1" value="1" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Bulk Discount Threshold</label>
+              <input type="number" id="inpProdBulkQty" min="0" step="1" value="0" placeholder="e.g. 20 (units for discount)" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Bulk Discount %</label>
+              <input type="number" id="inpProdBulkPct" min="0" max="50" step="1" value="0" placeholder="e.g. 10%" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Harvest Date *</label>
+              <input type="date" id="inpProdHarvestDate" required class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Availability Window End *</label>
+              <input type="date" id="inpProdAvailDate" required class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Pickup / Delivery *</label>
+              <select id="inpProdFulfillment" required class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                <option value="both">Both Pickup & Delivery</option>
+                <option value="pickup_only">Farm Gate Pickup Only</option>
+                <option value="delivery_only">Local Delivery Only</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Photo URL</label>
+            <div class="flex gap-2">
+              <input type="url" id="inpProdPhoto" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+              <button type="button" onclick="fillSamplePhoto()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-700 font-medium whitespace-nowrap">
+                Sample Image
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Description & Harvest Notes</label>
+            <textarea id="inpProdDesc" rows="2" placeholder="Describe variety, taste profile, or harvesting method..." class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none"></textarea>
+          </div>
+
+          <div class="flex items-center space-x-6 pt-1">
+            <label class="inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="inpProdOrganic" class="rounded text-emerald-600 focus:ring-emerald-500 mr-2">
+              <span class="font-bold text-slate-700">🌱 Certified Organic</span>
+            </label>
+            <label class="inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="inpProdPesticideFree" checked class="rounded text-emerald-600 focus:ring-emerald-500 mr-2">
+              <span class="font-bold text-slate-700">🛡️ Zero Synthetic Pesticides</span>
+            </label>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3">
+            <button type="button" onclick="closeAddProductModal()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 font-medium">
+              Cancel
+            </button>
+            <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-md shadow-emerald-600/20">
+              Publish Listing
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PROVENANCE & TRACEABILITY QR -->
+  <div id="modalTraceability" class="hidden fixed inset-0 z-50 overflow-y-auto">
+    <div class="min-h-screen px-4 text-center flex items-center justify-center">
+      <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeTraceabilityModal()"></div>
+      
+      <div class="inline-block w-full max-w-md bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all my-8 p-6 z-10 border border-slate-200/80">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">🔍</span>
+            <h3 class="font-bold font-display text-slate-900 text-base">Farm Provenance & Batch Traceability</h3>
+          </div>
+          <button onclick="closeTraceabilityModal()" class="text-slate-400 hover:text-slate-700 text-base">✕</button>
+        </div>
+
+        <div id="traceabilityContent" class="py-4 space-y-4 text-xs">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <button onclick="closeTraceabilityModal()" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl text-xs transition">
+          Close Provenance Record
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+  <!-- APP JAVASCRIPT -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
