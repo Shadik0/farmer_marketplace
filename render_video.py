@@ -43,8 +43,8 @@ CODE_GREEN = (52, 211, 153)
 def draw_header(draw, part_tag, title_text, progress_pct):
     # Top banner bar
     draw.rectangle([0, 0, WIDTH, 75], fill=(6, 78, 59)) # Emerald 900
-    draw.text((40, 22), "🌾 AgriMarket Demo", fill=TEXT_WHITE, font=FONT_HEADING)
-    draw.text((380, 27), f"|  {part_tag}  •  {title_text}", fill=TEXT_GREEN, font=FONT_SUBTITLE)
+    draw.text((40, 22), "AgriMarket Demo", fill=TEXT_WHITE, font=FONT_HEADING)
+    draw.text((360, 27), f"|  {part_tag}  -  {title_text}", fill=TEXT_GREEN, font=FONT_SUBTITLE)
     draw.text((1050, 28), "Problem: HACK-P309", fill=TEXT_MUTED, font=FONT_SMALL)
     
     # Progress Bar at bottom of header
@@ -55,7 +55,7 @@ def draw_footer(draw, narration_text):
     # Subtitle / narration bar at bottom
     draw.rectangle([0, HEIGHT - 70, WIDTH, HEIGHT], fill=(10, 15, 30))
     draw.rectangle([0, HEIGHT - 70, WIDTH, HEIGHT - 68], fill=ACCENT_DARK_GREEN)
-    draw.text((50, HEIGHT - 48), f"🎙️  {narration_text}", fill=(241, 245, 249), font=FONT_BODY)
+    draw.text((50, HEIGHT - 48), f">>  {narration_text}", fill=(241, 245, 249), font=FONT_BODY)
 
 
 # SCENE GENERATORS
@@ -77,13 +77,13 @@ def render_scene_1(progress):
 
     # Card 2: Team Members
     draw.rounded_rectangle([100, 370, 1180, 625], radius=20, fill=BG_CARD, outline=ACCENT_GREEN, width=2)
-    draw.text((130, 390), "👨‍💻 Project Team — HACK-P309 (Team Leader: Gayam Venkata Srinivasulu)", fill=ACCENT_AMBER, font=FONT_HEADING)
+    draw.text((130, 390), "Project Team — HACK-P309 | Section: S02", fill=ACCENT_AMBER, font=FONT_HEADING)
     
     team_members = [
-        ("⭐ Gayam Venkata Srinivasulu", "LEADER", "25MVCSCR0013", "CSE(CS)", "System Architecture, Backend API & Team Lead"),
-        ("• SHADIK ALI", "MEMBER", "25MVCAIR0102", "CSE(AI)", "Seed Data, Test Suite, Video & Documentation"),
-        ("• PITLA PAVAN FANINDRA", "MEMBER", "25MVCSCR0044", "CSE(CS)", "Pydantic Models, REST Endpoints & Logic"),
-        ("• B PARDASARATHI REDDY", "MEMBER", "25MVCSCR0004", "CSE(CS)", "Frontend UI, Cart Controller & Presentation")
+        ("Gayam Venkata Srinivasulu", "LEADER", "25MVCSCR0013", "CSE(CS)", "System Architecture, Backend API & Team Lead"),
+        ("SHADIK ALI", "MEMBER", "25MVCAIR0102", "CSE(AI)", "Seed Data, Test Suite, Video & Documentation"),
+        ("PITLA PAVAN FANINDRA", "MEMBER", "25MVCSCR0044", "CSE(CS)", "Pydantic Models, REST Endpoints & Logic"),
+        ("B PARDASARATHI REDDY", "MEMBER", "25MVCSCR0004", "CSE(CS)", "Frontend UI, Cart Controller & Presentation")
     ]
     for idx, (m_name, m_tag, m_roll, m_branch, m_role) in enumerate(team_members):
         col_x = 125 + (idx % 2) * 525
@@ -95,11 +95,11 @@ def render_scene_1(progress):
         draw.text((col_x + 14, row_y + 8), m_name, fill=name_color, font=FONT_BOLD)
         if m_tag == "LEADER":
             draw.rectangle([col_x + 400, row_y + 8, col_x + 490, row_y + 28], fill=ACCENT_AMBER)
-            draw.text((col_x + 410, row_y + 10), "LEADER", fill=(15, 23, 42), font=FONT_SMALL)
-        draw.text((col_x + 14, row_y + 30), f"Roll: {m_roll}  •  Branch: {m_branch}", fill=TEXT_GREEN, font=FONT_SMALL)
+            draw.text((col_x + 412, row_y + 10), "LEADER", fill=(15, 23, 42), font=FONT_SMALL)
+        draw.text((col_x + 14, row_y + 30), f"Roll: {m_roll}  |  Branch: {m_branch}  |  Sec: S02", fill=TEXT_GREEN, font=FONT_SMALL)
         draw.text((col_x + 14, row_y + 50), f"Work: {m_role}", fill=TEXT_MUTED, font=FONT_SMALL)
 
-    draw_footer(draw, "Team: Gayam Venkata Srinivasulu (Leader), Shadik Ali, Pavan Fanindra, Pardasarathi Reddy.")
+    draw_footer(draw, "Team: Gayam Venkata Srinivasulu (Leader), Shadik Ali, Pavan Fanindra, Pardasarathi Reddy | Section: S02.")
     return img
 
 def render_scene_2(progress):
@@ -110,7 +110,7 @@ def render_scene_2(progress):
     
     # Left Card: The Problem
     draw.rounded_rectangle([80, 110, 620, 620], radius=20, fill=BG_CARD, outline=(225, 29, 72), width=2)
-    draw.text((110, 135), "❌ The Problem: Agricultural Middlemen", fill=(251, 113, 133), font=FONT_HEADING)
+    draw.text((110, 135), "[X] The Problem: Agricultural Middlemen", fill=(251, 113, 133), font=FONT_HEADING)
     
     problems = [
         "1. Intermediary Exploitation: 3 to 5 middlemen take up to 45% margin.",
@@ -126,7 +126,7 @@ def render_scene_2(progress):
 
     # Right Card: The Solution
     draw.rounded_rectangle([660, 110, 1200, 620], radius=20, fill=BG_CARD, outline=ACCENT_GREEN, width=2)
-    draw.text((690, 135), "✅ The Solution: AgriMarket Platform", fill=TEXT_GREEN, font=FONT_HEADING)
+    draw.text((690, 135), "[OK] The Solution: AgriMarket Platform", fill=TEXT_GREEN, font=FONT_HEADING)
     
     solutions = [
         "1. Direct Farm Listings: Verified growers publish available produce.",
@@ -158,7 +158,7 @@ def render_scene_3(progress):
     draw.text((150, 118), "https://farmer-marketplace-00jr.onrender.com (Produce Catalog)", fill=TEXT_MUTED, font=FONT_CODE)
 
     # Categories Bar
-    cats = ["All Produce", "🥕 Vegetables", "🍎 Fruits", "🌾 Grains & Pulses", "🥛 Dairy & Honey", "🌿 Herbs & Spices"]
+    cats = ["All Produce", " Vegetables", " Fruits", " Grains & Pulses", " Dairy & Honey", " Herbs & Spices"]
     for i, c in enumerate(cats):
         x = 90 + i * 185
         bg = (6, 95, 70) if i == 0 else BG_CARD_LIGHT
@@ -175,22 +175,22 @@ def render_scene_3(progress):
         cx = 90 + i * 380
         draw.rounded_rectangle([cx, 220, cx + 350, 600], radius=16, fill=BG_CARD_LIGHT, outline=(6, 95, 70), width=2)
         draw.rectangle([cx, 220, cx + 350, 360], fill=(30, 41, 59)) # Image placeholder
-        draw.text((cx + 120, 275), "📸 [PRODUCE PHOTO]", fill=TEXT_MUTED, font=FONT_SMALL)
+        draw.text((cx + 120, 275), " [PRODUCE PHOTO]", fill=TEXT_MUTED, font=FONT_SMALL)
         draw.rectangle([cx + 15, 235, cx + 150, 260], fill=(6, 95, 70))
         draw.text((cx + 25, 240), p_badge, fill=TEXT_GREEN, font=FONT_SMALL)
         
         draw.text((cx + 20, 380), p_title, fill=TEXT_WHITE, font=FONT_BOLD)
-        draw.text((cx + 20, 410), f"👨‍🌾 {p_farm}", fill=TEXT_GREEN, font=FONT_SMALL)
+        draw.text((cx + 20, 410), f"👨‍ {p_farm}", fill=TEXT_GREEN, font=FONT_SMALL)
         draw.text((cx + 20, 445), p_price, fill=TEXT_WHITE, font=FONT_HEADING)
         draw.text((cx + 20, 485), p_save, fill=ACCENT_AMBER, font=FONT_SMALL)
-        draw.text((cx + 20, 515), f"✅ {p_stock}", fill=TEXT_MUTED, font=FONT_SMALL)
+        draw.text((cx + 20, 515), f"[OK] {p_stock}", fill=TEXT_MUTED, font=FONT_SMALL)
 
         # Quantity Stepper from 0/1
         draw.rounded_rectangle([cx + 20, 545, cx + 130, 585], radius=8, fill=(15, 23, 42))
         draw.text((cx + 35, 552), "-   1   +", fill=TEXT_WHITE, font=FONT_BOLD)
         # Add to cart button
         draw.rounded_rectangle([cx + 145, 545, cx + 330, 585], radius=8, fill=ACCENT_DARK_GREEN)
-        draw.text((cx + 165, 554), "🛒 Add to Cart", fill=TEXT_WHITE, font=FONT_BOLD)
+        draw.text((cx + 165, 554), " Add to Cart", fill=TEXT_WHITE, font=FONT_BOLD)
 
     draw_footer(draw, "Live marketplace view: Users browse fresh produce with verified harvest dates and mandi price savings.")
     return img
@@ -203,11 +203,11 @@ def render_scene_4(progress):
     
     # Left: Stock Limit Enforcement Check
     draw.rounded_rectangle([80, 110, 620, 620], radius=20, fill=BG_CARD, outline=ACCENT_AMBER, width=2)
-    draw.text((110, 135), "⚡ Strict Stock Limit Protection", fill=ACCENT_AMBER, font=FONT_HEADING)
+    draw.text((110, 135), " Strict Stock Limit Protection", fill=ACCENT_AMBER, font=FONT_HEADING)
     
     draw.rounded_rectangle([110, 190, 590, 270], radius=12, fill=BG_CARD_LIGHT)
     draw.text((125, 205), "Customer Attempts to Order 99,999 kg:", fill=TEXT_WHITE, font=FONT_BOLD)
-    draw.text((125, 235), "❌ HTTP 400 Bad Request:", fill=(244, 63, 94), font=FONT_BOLD)
+    draw.text((125, 235), "[X] HTTP 400 Bad Request:", fill=(244, 63, 94), font=FONT_BOLD)
     draw.text((125, 255), "Cannot order 99999 kg. Only 180 kg available.", fill=TEXT_MUTED, font=FONT_SMALL)
 
     draw.rounded_rectangle([110, 290, 590, 400], radius=12, fill=(6, 78, 59))
@@ -216,15 +216,15 @@ def render_scene_4(progress):
     draw.text((125, 360), "✓ Produces reserved for buyer immediately.", fill=TEXT_GREEN, font=FONT_SMALL)
 
     draw.rounded_rectangle([110, 420, 590, 600], radius=12, fill=BG_CARD_LIGHT)
-    draw.text((125, 435), "🔒 Simulated Payment & Safety:", fill=TEXT_WHITE, font=FONT_BOLD)
-    draw.text((125, 465), "• Cash on Farm Gate Pickup", fill=TEXT_GREEN, font=FONT_BODY)
-    draw.text((125, 495), "• Cash on Delivery (COD)", fill=TEXT_GREEN, font=FONT_BODY)
-    draw.text((125, 525), "• Demo Instant UPI / Net Banking", fill=TEXT_GREEN, font=FONT_BODY)
+    draw.text((125, 435), " Simulated Payment & Safety:", fill=TEXT_WHITE, font=FONT_BOLD)
+    draw.text((125, 465), "- Cash on Farm Gate Pickup", fill=TEXT_GREEN, font=FONT_BODY)
+    draw.text((125, 495), "- Cash on Delivery (COD)", fill=TEXT_GREEN, font=FONT_BODY)
+    draw.text((125, 525), "- Demo Instant UPI / Net Banking", fill=TEXT_GREEN, font=FONT_BODY)
     draw.text((125, 560), "Zero real credit cards collected (Prototype Rule Compliant)", fill=TEXT_MUTED, font=FONT_SMALL)
 
     # Right: Slide-Over Cart Summary
     draw.rounded_rectangle([660, 110, 1200, 620], radius=20, fill=BG_CARD, outline=ACCENT_GREEN, width=2)
-    draw.text((690, 135), "🛒 Shopping Cart & Order Summary", fill=TEXT_GREEN, font=FONT_HEADING)
+    draw.text((690, 135), " Shopping Cart & Order Summary", fill=TEXT_GREEN, font=FONT_HEADING)
     
     cart_items = [
         ("Organic Roma Tomatoes", "5 kg @ ₹35.00/kg", "₹175.00"),
@@ -243,7 +243,7 @@ def render_scene_4(progress):
     draw.text((1020, 470), "₹283.00", fill=ACCENT_GREEN, font=FONT_TITLE)
 
     draw.rounded_rectangle([690, 540, 1170, 600], radius=12, fill=ACCENT_DARK_GREEN)
-    draw.text((800, 555), "🚀 Send Order Request to Farmer ➔", fill=TEXT_WHITE, font=FONT_HEADING)
+    draw.text((800, 555), " Send Order Request to Farmer ➔", fill=TEXT_WHITE, font=FONT_HEADING)
 
     draw_footer(draw, "The cart enforces real-time stock validation and calculates bulk tier discounts with simulated payment options.")
     return img
@@ -274,7 +274,7 @@ def render_scene_5(progress):
 
     # Farmer Hub Controls Card
     draw.rounded_rectangle([80, 285, 1200, 620], radius=18, fill=BG_CARD, outline=BG_CARD_LIGHT, width=2)
-    draw.text((110, 310), "👨‍🌾 Farmer Hub: Real-Time Inventory & Price Controls", fill=ACCENT_AMBER, font=FONT_HEADING)
+    draw.text((110, 310), "👨‍ Farmer Hub: Real-Time Inventory & Price Controls", fill=ACCENT_AMBER, font=FONT_HEADING)
     
     # Live Farmer Details Banner
     draw.rounded_rectangle([110, 360, 1170, 420], radius=10, fill=BG_CARD_LIGHT)
@@ -304,26 +304,26 @@ def render_scene_6(progress):
     
     # Left: Database & Backend Architecture
     draw.rounded_rectangle([80, 110, 620, 620], radius=20, fill=BG_CARD, outline=ACCENT_GREEN, width=2)
-    draw.text((110, 135), "⚙️ FastAPI & SQLite Architecture", fill=TEXT_GREEN, font=FONT_HEADING)
+    draw.text((110, 135), " FastAPI & SQLite Architecture", fill=TEXT_GREEN, font=FONT_HEADING)
     
     draw.rounded_rectangle([110, 185, 590, 310], radius=10, fill=BG_CARD_LIGHT)
     draw.text((125, 195), "FastAPI RESTful Routing:", fill=TEXT_WHITE, font=FONT_BOLD)
-    draw.text((125, 220), "• GET  /api/products - Search & filter catalog", fill=CODE_GREEN, font=FONT_CODE)
-    draw.text((125, 245), "• POST /api/orders   - Atomic inventory deduction", fill=CODE_GREEN, font=FONT_CODE)
-    draw.text((125, 270), "• PATCH /api/orders/{id}/status - State machine", fill=CODE_GREEN, font=FONT_CODE)
+    draw.text((125, 220), "- GET  /api/products - Search & filter catalog", fill=CODE_GREEN, font=FONT_CODE)
+    draw.text((125, 245), "- POST /api/orders   - Atomic inventory deduction", fill=CODE_GREEN, font=FONT_CODE)
+    draw.text((125, 270), "- PATCH /api/orders/{id}/status - State machine", fill=CODE_GREEN, font=FONT_CODE)
 
     draw.rounded_rectangle([110, 325, 590, 600], radius=10, fill=BG_CARD_LIGHT)
     draw.text((125, 340), "Relational Database Schema (SQLite):", fill=TEXT_WHITE, font=FONT_BOLD)
-    draw.text((125, 370), "• users (Farmers, Buyers, Admin)", fill=TEXT_MUTED, font=FONT_SMALL)
-    draw.text((125, 400), "• products (17 items, batch codes, harvest dates)", fill=TEXT_MUTED, font=FONT_SMALL)
-    draw.text((125, 430), "• orders & order_items (ACID transactional)", fill=TEXT_MUTED, font=FONT_SMALL)
-    draw.text((125, 460), "• moderation_logs (Duplicate title detection)", fill=TEXT_MUTED, font=FONT_SMALL)
-    draw.text((125, 505), "FOREIGN KEYS ENABLED  •  ACID ATOMICITY", fill=ACCENT_AMBER, font=FONT_BOLD)
+    draw.text((125, 370), "- users (Farmers, Buyers, Admin)", fill=TEXT_MUTED, font=FONT_SMALL)
+    draw.text((125, 400), "- products (17 items, batch codes, harvest dates)", fill=TEXT_MUTED, font=FONT_SMALL)
+    draw.text((125, 430), "- orders & order_items (ACID transactional)", fill=TEXT_MUTED, font=FONT_SMALL)
+    draw.text((125, 460), "- moderation_logs (Duplicate title detection)", fill=TEXT_MUTED, font=FONT_SMALL)
+    draw.text((125, 505), "FOREIGN KEYS ENABLED  -  ACID ATOMICITY", fill=ACCENT_AMBER, font=FONT_BOLD)
     draw.text((125, 545), "Interactive Swagger UI available at /docs", fill=TEXT_GREEN, font=FONT_SMALL)
 
     # Right: Automated Test Suite Output
     draw.rounded_rectangle([660, 110, 1200, 620], radius=20, fill=(10, 15, 30), outline=ACCENT_DARK_GREEN, width=2)
-    draw.text((690, 135), "🧪 Automated Test Evidence (9/9 Passed)", fill=TEXT_GREEN, font=FONT_HEADING)
+    draw.text((690, 135), " Automated Test Evidence (9/9 Passed)", fill=TEXT_GREEN, font=FONT_HEADING)
     
     tests = [
         "python -m unittest tests/test_marketplace.py",
@@ -354,7 +354,7 @@ def render_scene_7(progress):
     draw_header(draw, "Part 5 of 5", "Live Deployment & Conclusion", 0.90 + progress * 0.10)
     
     draw.rounded_rectangle([100, 110, 1180, 400], radius=20, fill=BG_CARD, outline=ACCENT_GREEN, width=2)
-    draw.text((140, 140), "🚀 Live Accessible Deployment Links", fill=TEXT_GREEN, font=FONT_HEADING)
+    draw.text((140, 140), " Live Accessible Deployment Links", fill=TEXT_GREEN, font=FONT_HEADING)
     
     links = [
         ("Permanent 24/7 Web App:", "https://farmer-marketplace-00jr.onrender.com"),
@@ -368,7 +368,7 @@ def render_scene_7(progress):
 
     # Deliverables Checklist
     draw.rounded_rectangle([100, 425, 1180, 620], radius=20, fill=BG_CARD, outline=BG_CARD_LIGHT, width=2)
-    draw.text((140, 445), "📋 All 12 Hackathon Deliverables Completed:", fill=TEXT_WHITE, font=FONT_HEADING)
+    draw.text((140, 445), " All 12 Hackathon Deliverables Completed:", fill=TEXT_WHITE, font=FONT_HEADING)
     
     checks = [
         "✓ Full-Stack Source Code", "✓ 17-Section README.md", "✓ Postman Collection",
