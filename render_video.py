@@ -76,23 +76,30 @@ def render_scene_1(progress):
     draw.text((130, 290), "A production-ready full-stack application connecting farmers directly with households, restaurants & wholesalers.", fill=TEXT_MUTED, font=FONT_BODY)
 
     # Card 2: Team Members
-    draw.rounded_rectangle([100, 385, 1180, 620], radius=20, fill=BG_CARD, outline=BG_CARD_LIGHT, width=2)
-    draw.text((130, 405), "👨‍💻 Team: AgriCoders (4 Students)", fill=ACCENT_AMBER, font=FONT_HEADING)
+    draw.rounded_rectangle([100, 370, 1180, 625], radius=20, fill=BG_CARD, outline=ACCENT_GREEN, width=2)
+    draw.text((130, 390), "👨‍💻 Project Team — HACK-P309 (Team Leader: Gayam Venkata Srinivasulu)", fill=ACCENT_AMBER, font=FONT_HEADING)
     
-    members = [
-        ("Student 1 (Lead)", "CSE - Section A", "Backend Architecture, ACID Transactions"),
-        ("Student 2", "CSE - Section A", "Database Schema & Postman Collection"),
-        ("Student 3", "CSE - Section A", "Frontend SPA, Cart & Role Switcher"),
-        ("Student 4", "CSE - Section A", "Batch QR Traceability & Test Suite")
+    team_members = [
+        ("⭐ Gayam Venkata Srinivasulu", "LEADER", "25MVCSCR0013", "CSE(CS)", "System Architecture, Backend API & Team Lead"),
+        ("• SHADIK ALI", "MEMBER", "25MVCAIR0102", "CSE(AI)", "Seed Data, Test Suite, Video & Documentation"),
+        ("• PITLA PAVAN FANINDRA", "MEMBER", "25MVCSCR0044", "CSE(CS)", "Pydantic Models, REST Endpoints & Logic"),
+        ("• B PARDASARATHI REDDY", "MEMBER", "25MVCSCR0004", "CSE(CS)", "Frontend UI, Cart Controller & Presentation")
     ]
-    for idx, (m_name, m_sec, m_role) in enumerate(members):
-        col_x = 130 + (idx % 2) * 520
-        row_y = 460 + (idx // 2) * 70
-        draw.rounded_rectangle([col_x, row_y, col_x + 490, row_y + 55], radius=10, fill=BG_CARD_LIGHT)
-        draw.text((col_x + 15, row_y + 8), f"• {m_name} ({m_sec})", fill=TEXT_WHITE, font=FONT_BOLD)
-        draw.text((col_x + 15, row_y + 30), m_role, fill=TEXT_GREEN, font=FONT_SMALL)
+    for idx, (m_name, m_tag, m_roll, m_branch, m_role) in enumerate(team_members):
+        col_x = 125 + (idx % 2) * 525
+        row_y = 435 + (idx // 2) * 85
+        card_bg = (10, 45, 35) if m_tag == "LEADER" else BG_CARD_LIGHT
+        card_border = ACCENT_AMBER if m_tag == "LEADER" else BG_CARD_LIGHT
+        draw.rounded_rectangle([col_x, row_y, col_x + 505, row_y + 75], radius=10, fill=card_bg, outline=card_border, width=1)
+        name_color = ACCENT_AMBER if m_tag == "LEADER" else TEXT_WHITE
+        draw.text((col_x + 14, row_y + 8), m_name, fill=name_color, font=FONT_BOLD)
+        if m_tag == "LEADER":
+            draw.rectangle([col_x + 400, row_y + 8, col_x + 490, row_y + 28], fill=ACCENT_AMBER)
+            draw.text((col_x + 410, row_y + 10), "LEADER", fill=(15, 23, 42), font=FONT_SMALL)
+        draw.text((col_x + 14, row_y + 30), f"Roll: {m_roll}  •  Branch: {m_branch}", fill=TEXT_GREEN, font=FONT_SMALL)
+        draw.text((col_x + 14, row_y + 50), f"Work: {m_role}", fill=TEXT_MUTED, font=FONT_SMALL)
 
-    draw_footer(draw, "Welcome faculty and evaluators. We are Team AgriCoders presenting our full-stack project for HACK-P309.")
+    draw_footer(draw, "Team: Gayam Venkata Srinivasulu (Leader), Shadik Ali, Pavan Fanindra, Pardasarathi Reddy.")
     return img
 
 def render_scene_2(progress):
@@ -148,7 +155,7 @@ def render_scene_3(progress):
     draw.ellipse([80, 122, 92, 134], fill=(239, 68, 68))
     draw.ellipse([100, 122, 112, 134], fill=(245, 158, 11))
     draw.ellipse([120, 122, 132, 134], fill=(16, 185, 129))
-    draw.text((150, 118), "https://hitachi-hostel-musical-tuesday.trycloudflare.com (Produce Catalog)", fill=TEXT_MUTED, font=FONT_CODE)
+    draw.text((150, 118), "https://farmer-marketplace-00jr.onrender.com (Produce Catalog)", fill=TEXT_MUTED, font=FONT_CODE)
 
     # Categories Bar
     cats = ["All Produce", "🥕 Vegetables", "🍎 Fruits", "🌾 Grains & Pulses", "🥛 Dairy & Honey", "🌿 Herbs & Spices"]
@@ -350,10 +357,10 @@ def render_scene_7(progress):
     draw.text((140, 140), "🚀 Live Accessible Deployment Links", fill=TEXT_GREEN, font=FONT_HEADING)
     
     links = [
-        ("Public Internet Web App:", "https://hitachi-hostel-musical-tuesday.trycloudflare.com"),
-        ("12-Slide PowerPoint Presentation:", "https://hitachi-hostel-musical-tuesday.trycloudflare.com/presentation"),
-        ("Interactive API & Swagger Docs:", "https://hitachi-hostel-musical-tuesday.trycloudflare.com/docs"),
-        ("Localhost & Wi-Fi LAN Access:", "http://localhost:8000  |  http://192.168.0.103:8000")
+        ("Permanent 24/7 Web App:", "https://farmer-marketplace-00jr.onrender.com"),
+        ("12-Slide PowerPoint Deck:", "https://farmer-marketplace-00jr.onrender.com/presentation"),
+        ("Interactive API Swagger Docs:", "https://farmer-marketplace-00jr.onrender.com/docs"),
+        ("Public GitHub Repository:", "https://github.com/Shadik0/farmer_marketplace")
     ]
     for i, (label, url) in enumerate(links):
         draw.text((140, 195 + i * 48), label, fill=TEXT_WHITE, font=FONT_BOLD)
@@ -373,7 +380,7 @@ def render_scene_7(progress):
         y = 500 + (i // 3) * 36
         draw.text((x, y), chk, fill=TEXT_GREEN, font=FONT_BOLD)
 
-    draw_footer(draw, "Thank you! AgriMarket is ready for full-stack evaluation and live deployment review.")
+    draw_footer(draw, "AgriMarket | Team: Gayam Venkata Srinivasulu (Lead), Shadik Ali, Pavan Fanindra, Pardasarathi Reddy.")
     return img
 
 
