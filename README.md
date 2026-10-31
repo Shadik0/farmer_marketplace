@@ -230,9 +230,9 @@ A complete Postman collection is provided in [`docs/postman_collection.json`](do
 ## 14. Deployment
 
 ### A. Live Public Internet Access (Accessible Worldwide via Cloudflare)
-- **Live Application URL:** https://hitachi-hostel-musical-tuesday.trycloudflare.com/
-- **Interactive Slide Presentation (12 Slides):** https://hitachi-hostel-musical-tuesday.trycloudflare.com/presentation
-- **Backend API & Swagger Documentation:** https://hitachi-hostel-musical-tuesday.trycloudflare.com/docs
+- **Live Application URL:** https://farmer-marketplace-00jr.onrender.com/
+- **Interactive Slide Presentation (12 Slides):** https://farmer-marketplace-00jr.onrender.com/presentation
+- **Backend API & Swagger Documentation:** https://farmer-marketplace-00jr.onrender.com/docs
 
 ### B. Local Wi-Fi / LAN Access (Same Network)
 - **Local Network URL:** http://192.168.0.103:8000/

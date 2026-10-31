@@ -72,9 +72,9 @@ farmer_marketplace/
 
 | Environment | URL |
 |-------------|-----|
-| 🌐 **Live Web App (Public)** | https://hitachi-hostel-musical-tuesday.trycloudflare.com |
-| 🎬 **Demo Video Player** | https://hitachi-hostel-musical-tuesday.trycloudflare.com/video |
-| 📊 **Presentation Slides** | https://hitachi-hostel-musical-tuesday.trycloudflare.com/presentation |
+| 🌐 **Live Web App (Public)** | https://farmer-marketplace-00jr.onrender.com |
+| 🎬 **Demo Video Player** | https://farmer-marketplace-00jr.onrender.com/video |
+| 📊 **Presentation Slides** | https://farmer-marketplace-00jr.onrender.com/presentation |
 | 🏠 **Local Network (Wi-Fi)** | http://192.168.0.103:8000 |
 | 🏠 **Localhost** | http://localhost:8000 |
 
@@ -86,9 +86,9 @@ farmer_marketplace/
 
 | Item | URL |
 |------|-----|
-| **Base API URL** | `https://hitachi-hostel-musical-tuesday.trycloudflare.com` |
-| **Interactive Swagger Docs** | https://hitachi-hostel-musical-tuesday.trycloudflare.com/docs |
-| **OpenAPI JSON Schema** | https://hitachi-hostel-musical-tuesday.trycloudflare.com/openapi.json |
+| **Base API URL** | `https://farmer-marketplace-00jr.onrender.com` |
+| **Interactive Swagger Docs** | https://farmer-marketplace-00jr.onrender.com/docs |
+| **OpenAPI JSON Schema** | https://farmer-marketplace-00jr.onrender.com/openapi.json |
 
 **Key API Endpoints:**
 
@@ -139,8 +139,8 @@ farmer_marketplace/
 
 | Item | Link |
 |------|------|
-| 🎬 **Web Video Player** | https://hitachi-hostel-musical-tuesday.trycloudflare.com/video |
-| ⬇️ **Direct MP4 Download** | https://hitachi-hostel-musical-tuesday.trycloudflare.com/docs-view/demo_video.mp4 |
+| 🎬 **Web Video Player** | https://farmer-marketplace-00jr.onrender.com/video |
+| ⬇️ **Direct MP4 Download** | https://farmer-marketplace-00jr.onrender.com/docs-view/demo_video.mp4 |
 | 📄 **Video Script** | `farmer_marketplace/docs/demo_video_script.md` |
 
 **Video Details:**
@@ -165,7 +165,7 @@ farmer_marketplace/
 
 | Item | Link |
 |------|------|
-| 🖥️ **Interactive Web Presentation (12 Slides)** | https://hitachi-hostel-musical-tuesday.trycloudflare.com/presentation |
+| 🖥️ **Interactive Web Presentation (12 Slides)** | https://farmer-marketplace-00jr.onrender.com/presentation |
 | 📄 **Slide Content & Notes** | `farmer_marketplace/docs/presentation_slides.md` |
 
 **Navigation:** Use `←` / `→` arrow keys or on-screen buttons to advance slides.
@@ -192,7 +192,7 @@ farmer_marketplace/
 ## ✅ Deliverable 9 — API Documentation
 
 **File:** `farmer_marketplace/docs/api-documentation.md`  
-**Live Interactive Docs:** https://hitachi-hostel-musical-tuesday.trycloudflare.com/docs  
+**Live Interactive Docs:** https://farmer-marketplace-00jr.onrender.com/docs  
 **Postman Collection:** `farmer_marketplace/docs/postman_collection.json`
 
 ### Sample API Calls with Responses
@@ -342,7 +342,7 @@ OK  ← ALL TESTS PASSED ✅
                       │  HTTPS (Cloudflare Tunnel)
 ┌─────────────────────▼───────────────────────────────────────────────┐
 │                    CLOUDFLARE EDGE LAYER                             │
-│   hitachi-hostel-musical-tuesday.trycloudflare.com                   │
+│   farmer-marketplace-00jr.onrender.com                   │
 │   SSL Termination · DDoS Protection · Global CDN                     │
 └─────────────────────┬───────────────────────────────────────────────┘
                       │  HTTP/QUIC
@@ -494,13 +494,13 @@ created_at  TIMESTAMP
 
 | Resource | URL |
 |----------|-----|
-| 🌐 Live Web App | https://hitachi-hostel-musical-tuesday.trycloudflare.com |
-| 🎬 Demo Video | https://hitachi-hostel-musical-tuesday.trycloudflare.com/video |
-| ⬇️ MP4 Download | https://hitachi-hostel-musical-tuesday.trycloudflare.com/docs-view/demo_video.mp4 |
-| 📊 Presentation | https://hitachi-hostel-musical-tuesday.trycloudflare.com/presentation |
-| 📖 Swagger API Docs | https://hitachi-hostel-musical-tuesday.trycloudflare.com/docs |
-| 🔌 Products API | https://hitachi-hostel-musical-tuesday.trycloudflare.com/api/products?status=active |
-| 👥 Users API | https://hitachi-hostel-musical-tuesday.trycloudflare.com/api/users |
-| 📦 Orders API | https://hitachi-hostel-musical-tuesday.trycloudflare.com/api/orders?buyer_id=6 |
-| 📈 Analytics API | https://hitachi-hostel-musical-tuesday.trycloudflare.com/api/analytics/price-trends |
-| 🛡️ Admin Metrics | https://hitachi-hostel-musical-tuesday.trycloudflare.com/api/admin/metrics |
+| 🌐 Live Web App | https://farmer-marketplace-00jr.onrender.com |
+| 🎬 Demo Video | https://farmer-marketplace-00jr.onrender.com/video |
+| ⬇️ MP4 Download | https://farmer-marketplace-00jr.onrender.com/docs-view/demo_video.mp4 |
+| 📊 Presentation | https://farmer-marketplace-00jr.onrender.com/presentation |
+| 📖 Swagger API Docs | https://farmer-marketplace-00jr.onrender.com/docs |
+| 🔌 Products API | https://farmer-marketplace-00jr.onrender.com/api/products?status=active |
+| 👥 Users API | https://farmer-marketplace-00jr.onrender.com/api/users |
+| 📦 Orders API | https://farmer-marketplace-00jr.onrender.com/api/orders?buyer_id=6 |
+| 📈 Analytics API | https://farmer-marketplace-00jr.onrender.com/api/analytics/price-trends |
+| 🛡️ Admin Metrics | https://farmer-marketplace-00jr.onrender.com/api/admin/metrics |
